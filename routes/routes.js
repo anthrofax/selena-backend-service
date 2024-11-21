@@ -450,9 +450,6 @@ router.delete("/transactions/:transactionId", async (req, res) => {
   const { transactionId } = req.params;
 
   try {
-    // Connect to the database
-    const connection = await mysql.createConnection(dbConfig);
-
     // Check if the transaction exists
     const [existingTransaction] = await connection.execute(
       "SELECT * FROM Transaksi WHERE transaction_id = ?",
