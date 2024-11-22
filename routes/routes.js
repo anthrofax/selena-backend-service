@@ -1,7 +1,6 @@
 const express = require("express");
-const fs = require("fs");
-const csv = require("csv-parser");
 const bcrypt = require("bcrypt");
+const xlsx = require("xlsx");
 
 const connection = require("../helper/db");
 const upload = require("../helper/multer");
@@ -158,54 +157,54 @@ router.get("/dashboard", (req, res) => {
 // Fitur Pencatatan Keuangan
 // 1. Upload CSV
 router.post("/insert-tokopedia", upload.single("file"), async (req, res) => {
-  if (!req.file) {
+  const file = req.file; // File yang diunggah
+  const userId = req.body.user_id; // User ID dari request body
+
+  if (!file) {
     return res.status(400).json({ message: "No file uploaded" });
   }
 
-  const filePath = req.file.path;
-  const userId = req.body.user_id; // Ensure `user_id` is sent in the request body
-
   if (!userId) {
-    fs.unlinkSync(filePath); // Clean up the uploaded file
     return res.status(400).json({ message: "User ID is required" });
   }
 
   try {
-    // Prepare CSV parsing
-    const transactions = [];
-    fs.createReadStream(filePath)
-      .pipe(csv())
-      .on("data", (row) => {
-        // Adjust column names based on Tokopedia CSV structure
-        const transaction = {
-          user_id: userId,
-          amount: parseFloat(row["Jumlah Transaksi"] || 0),
-          transaction_type: "income",
-          date: row["Tanggal Transaksi"],
-          catatan: row["Deskripsi Transaksi"] || "",
-        };
-        transactions.push(transaction);
-      })
-      .on("end", async () => {
-        // Insert data into the database
-        const query =
-          "INSERT INTO Transaksi (user_id, amount, transaction_type, date, catatan) VALUES ?";
-        const values = transactions.map((t) => [
-          t.user_id,
-          t.amount,
-          t.transaction_type,
-          t.date,
-          t.catatan,
-        ]);
+    // Membaca file Excel dari buffer (tanpa menyimpan ke disk)
+    const workbook = xlsx.read(file.buffer, { type: "buffer" });
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
 
-        await connection.query(query, [values]);
-        connection.end();
+    // Konversi data Excel ke JSON
+    const data = xlsx.utils.sheet_to_json(worksheet);
 
-        // Clean up the uploaded file
-        fs.unlinkSync(filePath);
+    // Memproses data menjadi transaksi
+    const transactions = data.map((row) => ({
+      user_id: userId,
+      amount: parseFloat(row["Jumlah Transaksi"] || 0),
+      transaction_type: "income",
+      date: row["Tanggal Transaksi"],
+      catatan: row["Deskripsi Transaksi"] || "",
+    }));
 
-        res.status(200).json({ message: "Transactions imported successfully" });
-      });
+    // Simpan data ke database (contoh pseudo-query)
+    const query =
+      "INSERT INTO Transaksi (user_id, amount, transaction_type, date, catatan) VALUES ?";
+    const values = transactions.map((t) => [
+      t.user_id,
+      t.amount,
+      t.transaction_type,
+      t.date,
+      t.catatan,
+    ]);
+
+    // Lakukan penyimpanan ke database
+    await connection.query(query, [values]);
+    connection.end();
+
+    res.status(200).json({
+      message: "Transactions imported successfully",
+      transactionsCount: transactions.length,
+    });
   } catch (error) {
     console.error("Error processing file:", error);
     res.status(500).json({ message: "Internal server error" });
@@ -213,54 +212,54 @@ router.post("/insert-tokopedia", upload.single("file"), async (req, res) => {
 });
 
 router.post("/insert-shopee", upload.single("file"), async (req, res) => {
-  if (!req.file) {
+  const file = req.file; // File yang diunggah
+  const userId = req.body.user_id; // User ID dari request body
+
+  if (!file) {
     return res.status(400).json({ message: "No file uploaded" });
   }
 
-  const filePath = req.file.path;
-  const userId = req.body.user_id; // Ensure `user_id` is sent in the request body
-
   if (!userId) {
-    fs.unlinkSync(filePath); // Clean up the uploaded file
     return res.status(400).json({ message: "User ID is required" });
   }
 
   try {
-    // Prepare CSV parsing
-    const transactions = [];
-    fs.createReadStream(filePath)
-      .pipe(csv())
-      .on("data", (row) => {
-        // Adjust column names based on Shopee CSV structure
-        const transaction = {
-          user_id: userId,
-          amount: parseFloat(row["Total Harga"] || 0),
-          transaction_type: "income",
-          date: row["Tanggal Pesanan"],
-          catatan: row["Nama Produk"] || "",
-        };
-        transactions.push(transaction);
-      })
-      .on("end", async () => {
-        // Insert data into the database
-        const query =
-          "INSERT INTO Transaksi (user_id, amount, transaction_type, date, catatan) VALUES ?";
-        const values = transactions.map((t) => [
-          t.user_id,
-          t.amount,
-          t.transaction_type,
-          t.date,
-          t.catatan,
-        ]);
+    // Membaca file Excel dari buffer (tanpa menyimpan ke disk)
+    const workbook = xlsx.read(file.buffer, { type: "buffer" });
+    const sheetName = workbook.SheetNames[0]; // Ambil sheet pertama
+    const worksheet = workbook.Sheets[sheetName];
 
-        await connection.query(query, [values]);
-        connection.end();
+    // Konversi data Excel ke JSON
+    const data = xlsx.utils.sheet_to_json(worksheet);
 
-        // Clean up the uploaded file
-        fs.unlinkSync(filePath);
+    // Map data berdasarkan struktur Shopee
+    const transactions = data.map((row) => ({
+      user_id: userId,
+      amount: parseFloat(row["Total Harga"] || 0), // Kolom "Total Harga"
+      transaction_type: "income",
+      date: row["Tanggal Pesanan"], // Kolom "Tanggal Pesanan"
+      catatan: row["Nama Produk"] || "", // Kolom "Nama Produk"
+    }));
 
-        res.status(200).json({ message: "Transactions imported successfully" });
-      });
+    // Query untuk menyimpan data ke database
+    const query =
+      "INSERT INTO Transaksi (user_id, amount, transaction_type, date, catatan) VALUES ?";
+    const values = transactions.map((t) => [
+      t.user_id,
+      t.amount,
+      t.transaction_type,
+      t.date,
+      t.catatan,
+    ]);
+
+    // Simpan ke database
+    await connection.query(query, [values]);
+
+    // Kirimkan respon sukses
+    res.status(200).json({
+      message: "Transactions imported successfully",
+      transactionsCount: transactions.length,
+    });
   } catch (error) {
     console.error("Error processing file:", error);
     res.status(500).json({ message: "Internal server error" });
@@ -274,12 +273,12 @@ router.get("/transactions", async (req, res) => {
 
   try {
     // Build the base query
-    let query = `SELECT * FROM Transaksi WHERE user_id=${user_id}`;
+    let query = `SELECT * FROM Transaksi WHERE`;
     const params = [];
 
     // Filter by user_id if provided
     if (user_id) {
-      query += " AND user_id = ?";
+      query += " user_id = ?";
       params.push(user_id);
     }
 
