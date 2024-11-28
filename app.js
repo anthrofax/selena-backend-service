@@ -1,12 +1,65 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
+require("dotenv").config();
 
-const router = require('./routes/routes');
+const router = require("./routes/routes");
+const sequelize = require("./helper/db");
+const Transactions = require("./models/transaction");
+const Users = require("./models/user");
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
+Transactions.belongsTo(Users, {
+  constraints: true,
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+});
+Users.hasMany(Transactions, {
+  foreignKey: "user_id",
+});
+
 const PORT = process.env.PORT || 8000;
-app.listen(PORT);
+const HOST = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
+
+(async () => {
+  try {
+    // Sinkron database dengan library sequelize dan reset tabel setiap kali server memulai/restart
+    await sequelize.sync({ force: true });
+
+    // Cari user dengan user_id = 1, jika tidak ada, buatkan
+    let user = await Users.findByPk(1);
+
+    if (!user)
+      user = await Users.create({
+        name: "Afridho Ikhsan",
+        email: "afridhoikhsan@gmail.com",
+        password_hash:
+          "$2y$10$jO1zxNVpq15Z638VGtO5P.aq70944K/KqEAlfzLbhdFoExwhgRpZi",
+      });
+
+    // Buat data transaksi awalan setiap kali server mulai
+    await user.createTransaction({
+      amount: 200000,
+      transaction_type: "income",
+      date: new Date("2024-11-28"),
+      catatan: "Initial deposit",
+    });
+
+    await user.createTransaction({
+      amount: 50000,
+      transaction_type: "expense",
+      date: new Date("2024-11-29"),
+      catatan: "Purchase",
+    });
+
+    // Mulai server
+    app.listen(PORT, HOST, () => {
+      console.log(`Server started on ${HOST}:${PORT}`);
+    });
+  } catch (error) {
+    console.log(`Error synchronizing database: ${error}`);
+  }
+})();

@@ -17,7 +17,7 @@ CREATE TABLE Transaksi (
     transaction_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
-    transaction_type ENUM('pendapatan', 'pengeluaran') NOT NULL,
+    transaction_type ENUM('income', 'expense') NOT NULL,
     date DATE NOT NULL,
     catatan TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
