@@ -2,13 +2,13 @@ const Transactions = require("../models/transaction"); // Import model Transacti
 
 const updateTransactionHandler = async (req, res) => {
   const { transactionId } = req.params;
-  const {  amount, transaction_type, date, catatan } = req.body;
+  const { amount, transaction_type, date, catatan } = req.body;
 
   // Validate required fields
   if (!amount || !transaction_type || !date) {
     return res.status(400).json({
       message:
-        "Missing required fields: amount, transaction_type, and date are required",
+        "Field yang diperlukan ada yang belum diisi: jumlah, jenis_transaksi, dan tanggal harus diisi",
     });
   }
 
@@ -16,7 +16,7 @@ const updateTransactionHandler = async (req, res) => {
   if (!["income", "expense"].includes(transaction_type)) {
     return res.status(400).json({
       message:
-        "Invalid transaction_type. It must be either 'income' or 'expense'",
+        "jenis_transaksi tidak valid. Harus berupa 'income' atau 'expense'",
     });
   }
 
@@ -26,7 +26,7 @@ const updateTransactionHandler = async (req, res) => {
 
     if (!existingTransaction) {
       return res.status(404).json({
-        message: `Transaction with ID ${transactionId} not found`,
+        message: `Transaksi dengan ID ${transactionId} tidak ditemukan`,
       });
     }
 
@@ -40,12 +40,12 @@ const updateTransactionHandler = async (req, res) => {
 
     // Respond with success
     res.status(200).json({
-      message: "Transaction updated successfully",
+      message: "Transaksi berhasil diperbarui",
       transaction: updatedTransaction,
     });
   } catch (error) {
-    console.error("Error updating transaction:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Terjadi kesalahan saat memperbarui transaksi:", error);
+    res.status(500).json({ message: "Kesalahan di server" });
   }
 };
 

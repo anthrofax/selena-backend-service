@@ -9,7 +9,7 @@ const deleteTransactionHandler = async (req, res) => {
 
     if (!existingTransaction) {
       return res.status(404).json({
-        message: `Transaction with ID ${transactionId} not found`,
+        message: `Transaksi dengan ID ${transactionId} tidak ditemukan`,
       });
     }
 
@@ -18,11 +18,11 @@ const deleteTransactionHandler = async (req, res) => {
 
     // Respond with success
     res.status(200).json({
-      message: `Transaction with ID ${transactionId} deleted successfully`,
+      message: `Transaksi dengan ID ${transactionId} berhasil dihapus`,
     });
   } catch (error) {
-    console.error("Error deleting transaction:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error("Terjadi kesalahan saat menghapus transaksi:", error);
+    res.status(500).json({ message: "Kesalahan di server" });
   }
 };
 

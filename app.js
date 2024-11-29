@@ -1,15 +1,18 @@
-const express = require("express");
-const bodyParser = require("body-parser");
 require("dotenv").config();
+const express = require("express");
 
 const router = require("./routes/routes");
 const sequelize = require("./helper/db");
 const Transactions = require("./models/transaction");
 const Users = require("./models/user");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.use('/auth', authRoutes)
 app.use(router);
 
 Transactions.belongsTo(Users, {
@@ -37,7 +40,7 @@ const HOST = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
         name: "Afridho Ikhsan",
         email: "afridhoikhsan@gmail.com",
         password_hash:
-          "$2y$10$jO1zxNVpq15Z638VGtO5P.aq70944K/KqEAlfzLbhdFoExwhgRpZi",
+          "$2b$10$EEuDaPCj0URNPWV3mW9LiuWcfpgC8wKgiesoEPAJr0taBDI98lIYe",
       });
 
     // Buat data transaksi awalan setiap kali server mulai

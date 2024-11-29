@@ -10,17 +10,17 @@ const getTransactionDetailHandler = async (req, res) => {
     // Check if transaction exists
     if (!transaction) {
       return res.status(404).json({
-        message: `Transaction with ID ${transactionId} not found`,
+        message: `Transaksi dengan ID ${transactionId} tidak ditemukan`,
       });
     }
 
     // Respond with transaction details
     res.status(200).json({
-      message: "Transaction retrieved successfully",
+      message: "Transaksi yang anda cari ditemukan",
       data: transaction,
     });
   } catch (error) {
-    console.error("Error retrieving transaction:", error);
+    console.error(":", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };

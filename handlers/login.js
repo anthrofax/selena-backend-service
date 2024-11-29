@@ -1,4 +1,6 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 const Users = require("../models/user"); // Import model Users
 
 const loginHandler = async (req, res) => {
@@ -7,7 +9,7 @@ const loginHandler = async (req, res) => {
   // Validasi field yang diperlukan
   if (!email || !password) {
     return res.status(400).json({
-      message: "Email and password are required",
+      message: "Email dan password diperlukan",
     });
   }
 
@@ -17,7 +19,7 @@ const loginHandler = async (req, res) => {
 
     if (!user) {
       return res.status(404).json({
-        message: "User not found",
+        message: "Pengguna tidak ditemukan",
       });
     }
 
@@ -26,22 +28,34 @@ const loginHandler = async (req, res) => {
 
     if (!isPasswordValid) {
       return res.status(401).json({
-        message: "Invalid email or password",
+        message: "Email atau password tidak valid",
       });
     }
+    
+    // Jika login berhasil, buat token JWT
+    const payload = {
+      user_id: user.user_id,
+      name: user.name,
+      email: user.email,
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     // Jika login berhasil, kirimkan informasi pengguna
     res.status(200).json({
-      message: "Login successful",
+      message: "Login berhasil",
       user: {
         id: user.user_id,
         name: user.name,
         email: user.email,
       },
+      token,
     });
   } catch (error) {
     console.error("Error during login:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Terjadi kesalahan di server" });
   }
 };
 

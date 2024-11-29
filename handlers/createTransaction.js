@@ -7,7 +7,7 @@ const createTransactionHandler = async (req, res) => {
   if (!user_id || !amount || !transaction_type || !date) {
     return res.status(400).json({
       message:
-        "Missing required fields: user_id, amount, transaction_type, and date are required",
+        "Data yang diperlukan belum diisi: user_id, amount, transaction_type, and date",
     });
   }
 
@@ -15,7 +15,7 @@ const createTransactionHandler = async (req, res) => {
   if (!["income", "expense"].includes(transaction_type)) {
     return res.status(400).json({
       message:
-        "Invalid transaction_type. It must be either 'income' or 'expense'",
+        "transaction_type yang dipilih tidak valid. Harus antara 'income' or 'expense'",
     });
   }
 
@@ -31,7 +31,7 @@ const createTransactionHandler = async (req, res) => {
 
     // Respond with success
     res.status(201).json({
-      message: "Transaction added successfully",
+      message: "Transaksi berhasil dicatat",
       transaction_id: newTransaction.transaction_id, // Return the created transaction's ID
     });
   } catch (error) {
