@@ -1,3 +1,6 @@
 const multer = require("multer");
 
-module.exports = multer({ dest: 'uploads/' });
+const storage = multer.memoryStorage(); // Menyimpan file di dalam memory (buffer)
+const upload = multer({ storage: storage });
+
+module.exports = upload;

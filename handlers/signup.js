@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const crypto = require('crypto')
+const crypto = require("crypto");
 
 const firestore = require("../helper/firestore");
 const Users = require("../models/user");
@@ -172,7 +172,8 @@ exports.verifyOtpHandler = async (req, res) => {
     // Hapus OTP dari Firestore setelah registrasi berhasil
     await otpRef.delete();
   } catch (error) {
-    console.error("Error verifying OTP:", error);
-    res.status(500).json({ message: "Terjadi kesalahan di server" });
+    res
+      .status(500)
+      .json({ message: "Terjadi kesalahan di server", error: error.message });
   }
 };

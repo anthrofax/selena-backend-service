@@ -6,13 +6,22 @@ const sequelize = require("./helper/db");
 const Transactions = require("./models/transaction");
 const Users = require("./models/user");
 const authRoutes = require("./routes/authRoutes");
+// const { loadExpenseModel, loadIncomeModel } = require("./helper/loadModel");
 
 const app = express();
+
+// (async () => {
+//   const incomeModel = await loadIncomeModel();
+//   const expenseModel = await loadExpenseModel();
+
+//   app.incomeModel = incomeModel;
+//   app.expenseModel = expenseModel;
+// })();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use('/auth', authRoutes)
+app.use("/auth", authRoutes);
 app.use(router);
 
 Transactions.belongsTo(Users, {

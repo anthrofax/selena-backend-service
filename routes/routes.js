@@ -2,7 +2,7 @@ const express = require("express");
 
 const upload = require("../helper/multer");
 const verifyToken = require("../handlers/verifyToken");
-const getDashboardDataHandler = require("../handlers/getDashboardData");
+// const getDashboardDataHandler = require("../handlers/getDashboardData");
 const insertTokopediaHandler = require("../handlers/insertTokopedia");
 const insertShopeeHandler = require("../handlers/insertShopee");
 const getTransactionsHandler = require("../handlers/getTransactions");
@@ -14,7 +14,7 @@ const deleteTransactionHandler = require("../handlers/deleteTransaction");
 const router = express.Router();
 
 // Fitur Dashboard
-router.get("/dashboard", verifyToken, getDashboardDataHandler);
+// router.get("/dashboard", verifyToken, getDashboardDataHandler);
 
 // Fitur Pencatatan Keuangan
 // 1. Upload CSV
