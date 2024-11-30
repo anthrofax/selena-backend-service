@@ -1,102 +1,156 @@
 // const Transactions = require("../models/transaction");
 // const { Sequelize } = require("sequelize");
-// const tf = require("@tensorflow/tfjs");
-// const express = require('express')
+const tf = require("@tensorflow/tfjs");
+// const express = require("express");
 
-// const app = express();
-
-// const getDashboardDataHandler = async (req, res) => {
+const getDashboardDataHandler = async (req, res) => {
 //   const { user, month, year } = req.query;
+  
+  const model = req.app.model
+  const rawData = req.app.rawData
 
-//   // Pastikan query parameter ada
-//   if (!user || !month || !year) {
-//     return res
-//       .status(400)
-//       .send({ error: "Pengguna, bulan, dan tahun wajib diisi" });
-//   }
+  console.log(rawData)
 
-//   try {
-//     const data = await getFinancialData(user, month, year);
-//     res.status(200).send(data);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send({ error: "Terjadi kesalahan di server" }, err);
-//   }
-// };
+  // Proses data
+  const { normalizedData, minValues, maxValues, processedData } =
+    preprocessData(rawData);
 
-// // Fungsi untuk memproses data dan membuat prediksi
-// async function getFinancialData(userId, month, year) {
-//   // Ambil data transaksi berdasarkan user, bulan, dan tahun
-//   const transactions = await Transactions.findAll({
-//     where: {
-//       user_id: userId,
-//       date: {
-//         [Sequelize.Op.gte]: `${year}-${month}-01`,
-//         [Sequelize.Op.lte]: `${year}-${month}-31`,
-//       },
-//     },
-//   });
+  // Latih model
+  await trainModel(model, normalizedData, 50); // Melatih model selama 50 epoch
 
-//   // Pisahkan transaksi pendapatan dan pengeluaran
-//   const income = [];
-//   const expense = [];
-//   transactions.forEach((transaction) => {
-//     if (transaction.transaction_type === "income") {
-//       income.push([transaction.amount, new Date(transaction.date).getTime()]);
-//     } else {
-//       expense.push([transaction.amount, new Date(transaction.date).getTime()]);
-//     }
-//   });
+  // Deteksi anomali dengan persentil yang ditentukan (misalnya, 95)
+  const anomaliesJson = await detectAnomalies(
+    model,
+    normalizedData,
+    minValues,
+    maxValues,
+    processedData,
+    99
+  );
 
-//   console.log(income);
-//   console.log(expense);
+  // Menampilkan hasil deteksi anomali dalam bentuk JSON
+  console.log(anomaliesJson); 
 
-//   // Hitung total income dan expense
-//   const totalIncome = income.reduce((acc, curr) => acc + curr[0], 0);
-//   const totalExpense = expense.reduce((acc, curr) => acc + curr[0], 0);
+  res.status(200).json({
+    message: "Data berhasil diambil"
+  })
+};
 
-//   console.log(totalIncome);
-//   console.log(totalExpense);
+// Fungsi untuk melatih model
+async function trainModel(model, trainData, epochs = 10) {
+  model.compile({
+    optimizer: tf.train.adam(),
+    loss: "meanSquaredError",
+  });
 
-//   // Panggil model untuk memberikan saran keuangan dan deteksi anomali
-//   const financialAdvice = await getFinancialAdvice(totalIncome, totalExpense);
-//   const anomalyDetection = await detectAnomaly([...income, ...expense]);
+  const batchSize = 32;
 
-//   console.log(financialAdvice);
-//   console.log(anomalyDetection);
+  // Latih model
+  for (let epoch = 0; epoch < epochs; epoch++) {
+    const history = await model.fit(trainData, trainData, {
+      epochs: 1,
+      batchSize: batchSize,
+      validationSplit: 0.1,
+      shuffle: true,
+    });
 
-//   return {
-//     cashflow_analysis: 1,
-//   };
-// }
+    console.log(`Epoch ${epoch + 1}: loss = ${history.history.loss[0]}`);
+  }
 
-// // Fungsi untuk memberi saran keuangan
-// async function getFinancialAdvice(totalIncome, totalExpense) {
-//   let advice = "";
-//   if (totalIncome > totalExpense) {
-//     advice = "Keuangan Anda sehat, pertimbangkan untuk menabung lebih banyak.";
-//   } else {
-//     advice =
-//       "Pengeluaran Anda melebihi pendapatan, pertimbangkan untuk mengurangi pengeluaran.";
-//   }
-//   return advice;
-// }
+  console.log("Pelatihan selesai!");
+  return model;
+}
 
-// // Fungsi untuk deteksi anomali
-// async function detectAnomaly(transactions) {
-//   // Contoh deteksi anomali menggunakan model ML
-//   const inputTensor = tf.tensor2d(transactions, [transactions.length, 2]);
-// const model = app.expenseModel
-//   const predictions = model.predict(inputTensor);
+// Fungsi untuk preprocessing data dan mengembalikan nilai min dan max
+function preprocessData(rawData) {
+    console.log(rawData.length)
+  const processedData = rawData.map((entry) => {
+    const date = new Date(entry.date);
+    const dayOfWeek = date.getDay();
+    const month = date.getMonth();
+    const dayOfMonth = date.getDate();
+    const year = date.getFullYear();
+    const dayOfYear = Math.floor(
+      (date - new Date(date.getFullYear(), 0, 0)) / 86400000
+    );
 
-//   // Deteksi anomali berdasarkan hasil prediksi
-//   const anomalies = predictions
-//     .dataSync()
-//     .filter((prediction) => prediction > 1); // Contoh threshold
+    return [entry.amount, dayOfWeek, month, dayOfMonth, year, dayOfYear];
+  });
 
-//   return anomalies.length > 0
-//     ? "Terdeteksi anomali pada pengeluaran"
-//     : "Tidak ada anomali terdeteksi";
-// }
+  const dataTensor = tf.tensor2d(processedData);
+  const minValues = dataTensor.min(0);
+  const maxValues = dataTensor.max(0);
+  const normalizedData = dataTensor
+    .sub(minValues)
+    .div(maxValues.sub(minValues));
 
-// module.exports = getDashboardDataHandler;
+  // Mengembalikan data normalisasi dan nilai min/max
+  return { normalizedData, minValues, maxValues, processedData };
+}
+
+// Fungsi untuk mendeteksi anomali berdasarkan reconstruction error dan mengembalikan hasil dalam format JSON
+async function detectAnomalies(
+  model,
+  dataTensor,
+  minValues,
+  maxValues,
+  processedData,
+  percentile = 97
+) {
+  // Prediksi menggunakan model
+  const predictedData = model.predict(dataTensor);
+
+  // Menghitung reconstruction error (selisih antara input dan output)
+  const reconstructionError = dataTensor.sub(predictedData).square().sum(1);
+
+  // Ambil array dari reconstruction error
+  const errorArray = await reconstructionError.data();
+
+  // Urutkan error untuk mendapatkan threshold persentil yang ditentukan
+  const sortedErrors = errorArray.sort((a, b) => a - b);
+  const threshold =
+    sortedErrors[Math.floor(sortedErrors.length * (percentile / 100))];
+
+  // Menyaring data yang lebih besar dari threshold
+  const anomalies = [];
+  for (let i = 0; i < errorArray.length; i++) {
+    if (errorArray[i] > threshold) {
+      // Denormalisasi data
+      const denormalizedData = dataTensor
+        .slice([i, 0], [1, -1])
+        .mul(maxValues.sub(minValues))
+        .add(minValues);
+
+      // Ambil data dari hasil denormalisasi dan masukkan kembali kolom 'date'
+      const denormalizedArray = denormalizedData.arraySync()[0];
+
+      const anomaly = {
+        index: i,
+        data: {
+          amount: denormalizedArray[0], // amount
+        },
+        reconstruction_error: errorArray[i], // Tambahkan nilai error
+      };
+
+      // Konversi kembali ke tanggal (menggunakan data yang denormalisasi)
+      const { amount } = anomaly.data;
+      const date = new Date(
+        denormalizedArray[4],
+        denormalizedArray[2],
+        denormalizedArray[3]
+      ); // Menggunakan data year, month, day_of_month
+
+      // Format tanggal menjadi yyyy-mm-dd
+      const formattedDate = date.toISOString().split("T")[0]; // Mengambil tanggal dalam format yyyy-mm-dd
+      anomaly.data.date = formattedDate;
+
+      // Menambahkan hasil anomali yang lengkap ke daftar anomali
+      anomalies.push(anomaly);
+    }
+  }
+
+  // Mengembalikan data anomali dalam format JSON
+  return JSON.stringify(anomalies, null, 2); // Menggunakan JSON.stringify untuk format yang lebih baik
+}
+
+module.exports = getDashboardDataHandler;
