@@ -28,7 +28,12 @@ const insertShopeeHandler = async (req, res) => {
     const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];
 
-    // Mengambil data mulai dari baris ke-5 tanpa header
+    if (worksheet["A1"].v !== "No. Pesanan") {
+      return res.status(400).json({
+        message:
+          "Excel yang anda upload bukan hasil export dari halaman 'Pesanan Saya' di Shopee. Silahkan upload excel yang valid.",
+      });
+    }
 
     // Ambil informasi range yang ada datanya dari sheet
     const range = worksheet["!ref"];

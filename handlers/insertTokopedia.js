@@ -2,18 +2,17 @@
 const xlsx = require("xlsx");
 const Transactions = require("../models/transaction");
 const Users = require("../models/user");
-const moment = require("moment");
 
 const insertTokopediaHandler = async (req, res) => {
-  const file = req.file; // File yang diunggah
   const userId = req.body.user_id; // User ID dari request body
-
-  if (!file) {
-    return res.status(400).json({ message: "Tidak ada file yang diunggah" });
-  }
+  const file = req.file; // File yang diunggah
 
   if (!userId) {
     return res.status(400).json({ message: "User ID diperlukan" });
+  }
+
+  if (!file) {
+    return res.status(400).json({ message: "Tidak ada file yang diunggah" });
   }
 
   try {
@@ -28,7 +27,12 @@ const insertTokopediaHandler = async (req, res) => {
     const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];
 
-    // Mengambil data mulai dari baris ke-5 tanpa header
+    if (worksheet["A1"].v !== "Nama Toko") {
+      return res.status(400).json({
+        message:
+          "Excel yang anda upload bukan hasil export dari halaman 'Daftar Pesanan' di Tokopedia. Silahkan upload excel yang valid.",
+      });
+    }
 
     // Ambil informasi range yang ada datanya dari sheet
     const range = worksheet["!ref"];
