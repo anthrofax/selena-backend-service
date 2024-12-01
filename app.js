@@ -27,7 +27,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use(router);
 
-app.get("/", (req, res) => {
+app.use("/", (req, res) => {
   console.log("Response success");
   res.send("Response Success!");
 });
