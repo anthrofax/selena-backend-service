@@ -1,0 +1,10 @@
+runtime: nodejs20
+env_variables:
+  NODE_ENV: "production"
+  DB_HOST: "34.101.206.199"
+  DB_USER: "cloud_computing"
+  DB_NAME: "selena_database"
+  DB_PASSWORD: "rizkiganteng"
+  EMAIL_USER: "afridhoikhsan@gmail.com"
+  EMAIL_PASSWORD: "hruo yplz ammz vpyk"
+  JWT_SECRET: "G8MoIWZbYcZHVddUNDlQIbsqco8uyXoVoYgluWDaWj1hUkDfUC9nc5tC4tPqzOITKJ+EIxttOGCA6U7+Rxw3sg=="
