@@ -3,13 +3,13 @@ const fs = require("fs");
 const path = require("path");
 
 exports.loadModel = async () => {
-  const modelPath = path.join(
-    __dirname,
-    "../machine-learning-models/my-autoencoder.json"
-  );
+  // const modelPath = path.join(
+  //   __dirname,
+  //   "../machine-learning-models/my-autoencoder.json"
+  // );
 
   try {
-    const model = await tf.loadLayersModel(`file://${modelPath}`);
+    const model = await tf.loadLayersModel(process.env.MODEL_URL);
 
     console.log("Model berhasil dimuat");
     return model;
@@ -25,10 +25,12 @@ exports.loadRawDataForPreprocessNeeds = async () => {
     "../machine-learning-models/pengeluaran.json"
   );
 
+  console.log(modelPath);
+
   try {
     const rawData = fs.readFileSync(`${modelPath}`, "utf8");
-    const data = await rawData.json();
-    
+    const data = JSON.parse(rawData);
+
     return data;
   } catch (error) {
     console.error("Gagal membaca file JSON:", error);

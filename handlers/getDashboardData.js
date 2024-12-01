@@ -1,39 +1,96 @@
 // const Transactions = require("../models/transaction");
 // const { Sequelize } = require("sequelize");
 const tf = require("@tensorflow/tfjs");
+const Users = require("../models/user");
 // const express = require("express");
 
 const getDashboardDataHandler = async (req, res) => {
-//   const { user, month, year } = req.query;
-  
-  const model = req.app.model
-  const rawData = req.app.rawData
+  const { user_id } = req.query;
 
-  console.log(rawData)
+  if (!user_id)
+    return res
+      .status(400)
+      .json({ message: `Query Parameter 'user_id' perlu dipass in` });
 
-  // Proses data
-  const { normalizedData, minValues, maxValues, processedData } =
-    preprocessData(rawData);
+  let anomalyTransactions = [];
+  const user = await Users.findByPk(+user_id);
 
-  // Latih model
-  await trainModel(model, normalizedData, 50); // Melatih model selama 50 epoch
+  if (!user)
+    return res
+      .status(400)
+      .json({ message: `User dengan id ${user_id} tidak tersedia.` });
 
-  // Deteksi anomali dengan persentil yang ditentukan (misalnya, 95)
-  const anomaliesJson = await detectAnomalies(
-    model,
-    normalizedData,
-    minValues,
-    maxValues,
-    processedData,
-    99
+  const model = req.app.model;
+
+  const userTransactions = await user.getTransactions();
+
+  const expenseTransactions = userTransactions.filter(
+    ({ dataValues }) => dataValues.transaction_type === "expense"
+  );
+  console.log(expenseTransactions);
+
+  const totalIncome = userTransactions
+    .filter(({ dataValues }) => dataValues.transaction_type === "income")
+    .reduce((acc, { dataValues }) => acc + dataValues.amount, 0);
+  const totalExpense = expenseTransactions.reduce(
+    (acc, { dataValues }) => acc + dataValues.amount,
+    0
   );
 
-  // Menampilkan hasil deteksi anomali dalam bentuk JSON
-  console.log(anomaliesJson); 
+  if (expenseTransactions.length > 1) {
+    const formatExpenseTransactions = expenseTransactions.map(
+      ({ dataValues }) => {
+        const { transaction_id, amount, date } = dataValues;
+
+        return {
+          date,
+          amount,
+          transactionId: transaction_id,
+        };
+      }
+    );
+
+    // // Proses data
+    const { normalizedData, minValues, maxValues } = preprocessData(
+      formatExpenseTransactions
+    );
+
+    // // Latih model
+    await trainModel(model, normalizedData, 100);
+
+    // // Deteksi anomali dengan persentil yang ditentukan (misalnya, 95)
+    anomalyTransactions = await detectAnomalies(
+      model,
+      normalizedData,
+      minValues,
+      maxValues,
+      formatExpenseTransactions,
+      99
+    );
+
+    anomalyTransactions = JSON.parse(anomalyTransactions).map(
+      (anomalyTransaction) => ({
+        date: anomalyTransaction.date,
+        amount: anomalyTransaction.amount,
+        catatan:
+          expenseTransactions.find(
+            ({ dataValues }) =>
+              dataValues.transaction_id === anomalyTransaction.transactionId
+          )?.catatan || "",
+      })
+    );
+  }
 
   res.status(200).json({
-    message: "Data berhasil diambil"
-  })
+    message: "Data analisis berhasil diambil",
+    totalIncome,
+    totalExpense,
+    financialAdvice:
+      totalExpense > totalIncome
+        ? "Pengeluaran Anda melebihi pendapatan, pertimbangkan untuk mengurangi pengeluaran."
+        : "Keuangan Anda sehat, pertimbangkan untuk menabung lebih banyak.",
+    anomalyTransactions,
+  });
 };
 
 // Fungsi untuk melatih model
@@ -63,7 +120,6 @@ async function trainModel(model, trainData, epochs = 10) {
 
 // Fungsi untuk preprocessing data dan mengembalikan nilai min dan max
 function preprocessData(rawData) {
-    console.log(rawData.length)
   const processedData = rawData.map((entry) => {
     const date = new Date(entry.date);
     const dayOfWeek = date.getDay();
@@ -88,69 +144,43 @@ function preprocessData(rawData) {
   return { normalizedData, minValues, maxValues, processedData };
 }
 
-// Fungsi untuk mendeteksi anomali berdasarkan reconstruction error dan mengembalikan hasil dalam format JSON
+// Fungsi untuk mendeteksi anomali berdasarkan rekonstruksi error
 async function detectAnomalies(
   model,
-  dataTensor,
+  data,
   minValues,
   maxValues,
-  processedData,
-  percentile = 97
+  rawData,
+  percentileThreshold = 97
 ) {
-  // Prediksi menggunakan model
-  const predictedData = model.predict(dataTensor);
+  // Prediksi rekonstruksi data
+  const reconstructed = model.predict(data);
+  const reconstructionError = data.sub(reconstructed).square().mean(1); // MSE per data point
 
-  // Menghitung reconstruction error (selisih antara input dan output)
-  const reconstructionError = dataTensor.sub(predictedData).square().sum(1);
+  // Menentukan threshold untuk anomali
+  const sortedErrors = await reconstructionError.array();
+  const thresholdIndex = Math.floor(
+    sortedErrors.length * (percentileThreshold / 100)
+  );
+  const threshold = sortedErrors.sort((a, b) => a - b)[thresholdIndex];
 
-  // Ambil array dari reconstruction error
-  const errorArray = await reconstructionError.data();
+  // Mengidentifikasi data dengan error lebih besar dari threshold
+  const anomalies = rawData
+    .map((entry, index) => {
+      const error = reconstructionError.arraySync()[index];
+      if (error > threshold) {
+        return {
+          date: entry.date,
+          amount: entry.amount,
+          transactionId: entry.transactionId,
+        };
+      }
+      return null;
+    })
+    .filter((anomaly) => anomaly !== null);
 
-  // Urutkan error untuk mendapatkan threshold persentil yang ditentukan
-  const sortedErrors = errorArray.sort((a, b) => a - b);
-  const threshold =
-    sortedErrors[Math.floor(sortedErrors.length * (percentile / 100))];
-
-  // Menyaring data yang lebih besar dari threshold
-  const anomalies = [];
-  for (let i = 0; i < errorArray.length; i++) {
-    if (errorArray[i] > threshold) {
-      // Denormalisasi data
-      const denormalizedData = dataTensor
-        .slice([i, 0], [1, -1])
-        .mul(maxValues.sub(minValues))
-        .add(minValues);
-
-      // Ambil data dari hasil denormalisasi dan masukkan kembali kolom 'date'
-      const denormalizedArray = denormalizedData.arraySync()[0];
-
-      const anomaly = {
-        index: i,
-        data: {
-          amount: denormalizedArray[0], // amount
-        },
-        reconstruction_error: errorArray[i], // Tambahkan nilai error
-      };
-
-      // Konversi kembali ke tanggal (menggunakan data yang denormalisasi)
-      const { amount } = anomaly.data;
-      const date = new Date(
-        denormalizedArray[4],
-        denormalizedArray[2],
-        denormalizedArray[3]
-      ); // Menggunakan data year, month, day_of_month
-
-      // Format tanggal menjadi yyyy-mm-dd
-      const formattedDate = date.toISOString().split("T")[0]; // Mengambil tanggal dalam format yyyy-mm-dd
-      anomaly.data.date = formattedDate;
-
-      // Menambahkan hasil anomali yang lengkap ke daftar anomali
-      anomalies.push(anomaly);
-    }
-  }
-
-  // Mengembalikan data anomali dalam format JSON
-  return JSON.stringify(anomalies, null, 2); // Menggunakan JSON.stringify untuk format yang lebih baik
+  // Mengembalikan anomali dalam format JSON
+  return JSON.stringify(anomalies, null, 2); // Menyusun JSON yang lebih terstruktur
 }
 
 module.exports = getDashboardDataHandler;
