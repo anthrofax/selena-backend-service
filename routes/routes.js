@@ -3,8 +3,8 @@ const express = require("express");
 const upload = require("../helper/multer");
 const verifyToken = require("../handlers/verifyToken");
 // const getDashboardDataHandler = require("../handlers/getDashboardData");
-const insertTokopediaHandler = require("../handlers/insertTokopedia");
-const insertShopeeHandler = require("../handlers/insertShopee");
+const { insertTokopediaSalesHandler } = require("../handlers/insertTokopedia");
+const { insertShopeeBalanceHandler } = require("../handlers/insertShopee");
 const getTransactionsHandler = require("../handlers/getTransactions");
 const getTransactionDetailHandler = require("../handlers/getTransactionDetail");
 const createTransactionHandler = require("../handlers/createTransaction");
@@ -22,14 +22,14 @@ router.post(
   "/insert-tokopedia",
   verifyToken,
   upload.single("file"),
-  insertTokopediaHandler
+  insertTokopediaSalesHandler
 );
 
 router.post(
   "/insert-shopee",
   verifyToken,
   upload.single("file"),
-  insertShopeeHandler
+  insertShopeeBalanceHandler
 );
 
 // 2. CRUD
