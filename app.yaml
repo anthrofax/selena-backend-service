@@ -8,3 +8,4 @@ env_variables:
   EMAIL_USER: "afridhoikhsan@gmail.com"
   EMAIL_PASSWORD: "hruo yplz ammz vpyk"
   JWT_SECRET: "G8MoIWZbYcZHVddUNDlQIbsqco8uyXoVoYgluWDaWj1hUkDfUC9nc5tC4tPqzOITKJ+EIxttOGCA6U7+Rxw3sg=="
+  MODEL_URL: "https://storage.googleapis.com/selena_model_bucket/my-autoencoder.json"

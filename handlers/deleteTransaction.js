@@ -21,8 +21,9 @@ const deleteTransactionHandler = async (req, res) => {
       message: `Transaksi dengan ID ${transactionId} berhasil dihapus`,
     });
   } catch (error) {
-    console.error("Terjadi kesalahan saat menghapus transaksi:", error);
-    res.status(500).json({ message: "Kesalahan di server" });
+    res
+      .status(500)
+      .json({ message: "Kesalahan di server", error: error.message });
   }
 };
 

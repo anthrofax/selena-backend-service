@@ -51,9 +51,7 @@ const getDashboardDataHandler = async (req, res) => {
     );
 
     // // Proses data
-    const { normalizedData, minValues, maxValues } = preprocessData(
-      formatExpenseTransactions
-    );
+    const { normalizedData, minValues, maxValues } = preprocessData(formatExpenseTransactions);
 
     // // Latih model
     await trainModel(model, normalizedData, 100);

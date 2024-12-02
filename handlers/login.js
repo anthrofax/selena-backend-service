@@ -55,7 +55,7 @@ const loginHandler = async (req, res) => {
     });
   } catch (error) {
     console.error("Error during login:", error);
-    res.status(500).json({ message: "Terjadi kesalahan di server" });
+    res.status(500).json({ message: "Terjadi kesalahan di server" ,error :error.message});
   }
 };
 

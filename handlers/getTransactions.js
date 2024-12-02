@@ -4,13 +4,16 @@ const { Sequelize } = require("sequelize");
 const getTransactionsHandler = async (req, res) => {
   const { user_id, start_date, end_date } = req.query;
 
+  if (!user_id)
+    return res
+      .status(400)
+      .json({ message: `Query Parameter 'user_id' perlu dipass in` });
+
   try {
     // Build the filter criteria using Sequelize's where condition
     const filter = {};
 
-    if (user_id) {
-      filter.user_id = +user_id;
-    }
+    filter.user_id = +user_id;
 
     if (start_date) {
       filter.date = { [Sequelize.Op.gte]: start_date }; // Greater than or equal to start_date
@@ -26,7 +29,6 @@ const getTransactionsHandler = async (req, res) => {
     });
 
     if (transactions.length < 1) {
-      console.log('test')
       return res.status(404).json({
         message: "Data yang anda cari tidak ditemukan.",
       });
@@ -37,8 +39,7 @@ const getTransactionsHandler = async (req, res) => {
       data: transactions,
     });
   } catch (error) {
-    console.error("Terdapat kesalahan dalam mengambil data transaksi:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
   }
 };
 

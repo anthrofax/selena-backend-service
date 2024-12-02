@@ -94,8 +94,9 @@ exports.insertTokopediaSalesHandler = async (req, res) => {
       totalTransaksi: transactions.length,
     });
   } catch (error) {
-    console.error("Terjadi kesalahan saat memproses file:", error);
-    res.status(500).json({ message: "Terjadi kesalahan di server" });
+    res
+      .status(500)
+      .json({ message: "Terjadi kesalahan di server", error: error.message });
   }
 };
 
@@ -184,7 +185,8 @@ exports.insertTokopediaDepositHandler = async (req, res) => {
       totalTransaksi: transactions.length,
     });
   } catch (error) {
-    console.error("Terjadi kesalahan saat memproses file:", error);
-    res.status(500).json({ message: "Terjadi kesalahan di server" });
+    res
+      .status(500)
+      .json({ message: "Terjadi kesalahan di server", error: error.message });
   }
 };
