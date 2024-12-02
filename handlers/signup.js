@@ -15,6 +15,11 @@ exports.signupHandler = async (req, res) => {
     });
   }
 
+  if (password.length < 8)
+    return res.status(400).json({
+      message: "Password harus berjumlah 8 karakter.",
+    });
+
   try {
     // Periksa apakah email sudah terdaftar
     const existingUser = await Users.findOne({ where: { email } });
@@ -114,16 +119,27 @@ exports.signupHandler = async (req, res) => {
       }
       res.status(200).json({
         message: "OTP telah dikirim ke email Anda. Harap verifikasi.",
+        user: {
+          name,
+          email,
+          password,
+        },
       });
     });
   } catch (error) {
-    console.error("Error during signup:", error);
-    res.status(500).json({ message: "Terjadi kesalahan di server" });
+    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
   }
 };
 
 exports.verifyOtpHandler = async (req, res) => {
   const { otp, name, email, password } = req.body;
+
+  if (!name || !email || !password || !otp) {
+    return res.status(400).json({
+      message:
+        "Nama, email, password, ataupun OTP tidak lengkap di Request Body!",
+    });
+  }
 
   try {
     // Ambil OTP dari Firestore
@@ -153,7 +169,7 @@ exports.verifyOtpHandler = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Buat pengguna baru
-    const newUser = await Users.create({
+    await Users.create({
       name,
       email,
       password_hash: hashedPassword,
@@ -162,18 +178,11 @@ exports.verifyOtpHandler = async (req, res) => {
     // Kirimkan respons dengan data pengguna
     res.status(201).json({
       message: "Pendaftaran akun berhasil!",
-      user: {
-        id: newUser.user_id,
-        name: newUser.name,
-        email: newUser.email,
-      },
     });
 
     // Hapus OTP dari Firestore setelah registrasi berhasil
     await otpRef.delete();
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Terjadi kesalahan di server", error: error.message });
+    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
   }
 };

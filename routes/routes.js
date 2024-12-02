@@ -21,14 +21,14 @@ router.get("/dashboard", verifyToken, getDashboardDataHandler);
 router.post(
   "/insert-tokopedia",
   verifyToken,
-  upload.single("file"),
+  upload.single("file-excel"),
   insertTokopediaSalesHandler
 );
 
 router.post(
   "/insert-shopee",
   verifyToken,
-  upload.single("file"),
+  upload.single("file-excel"),
   insertShopeeBalanceHandler
 );
 

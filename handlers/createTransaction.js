@@ -26,7 +26,7 @@ const createTransactionHandler = async (req, res) => {
       amount,
       transaction_type,
       date,
-      catatan: catatan || null, // Optional field
+      catatan: catatan || null, 
     });
 
     // Respond with success
@@ -35,8 +35,7 @@ const createTransactionHandler = async (req, res) => {
       transaction_id: newTransaction.transaction_id, // Return the created transaction's ID
     });
   } catch (error) {
-    console.error("Error adding transaction:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
   }
 };
 

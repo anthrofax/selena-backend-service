@@ -5,15 +5,15 @@ const updateTransactionHandler = async (req, res) => {
   const { amount, transaction_type, date, catatan } = req.body;
 
   // Validate required fields
-  if (!amount || !transaction_type || !date) {
+  if (!amount && !transaction_type && !date && !catatan) {
     return res.status(400).json({
       message:
-        "Field yang diperlukan ada yang belum diisi: jumlah, jenis_transaksi, dan tanggal harus diisi",
+        "Tidak ada data yang ingin dirubah, berikan setidak nya satu data untuk dilakukan perubahan.",
     });
   }
 
   // Validate transaction type
-  if (!["income", "expense"].includes(transaction_type)) {
+  if (transaction_type && !["income", "expense"].includes(transaction_type)) {
     return res.status(400).json({
       message:
         "jenis_transaksi tidak valid. Harus berupa 'income' atau 'expense'",
@@ -44,8 +44,9 @@ const updateTransactionHandler = async (req, res) => {
       transaction: updatedTransaction,
     });
   } catch (error) {
-    console.error("Terjadi kesalahan saat memperbarui transaksi:", error);
-    res.status(500).json({ message: "Kesalahan di server" });
+    res
+      .status(500)
+      .json({ message: "Kesalahan di server", error: error.message });
   }
 };
 

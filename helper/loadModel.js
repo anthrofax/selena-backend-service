@@ -3,13 +3,14 @@ const fs = require("fs");
 const path = require("path");
 
 exports.loadModel = async () => {
-  // const modelPath = path.join(
-  //   __dirname,
-  //   "../machine-learning-models/my-autoencoder.json"
-  // );
+  const modelPath = path.join(
+    __dirname,
+    "../machine-learning-models/my-autoencoder.json"
+  );
 
   try {
-    const model = await tf.loadLayersModel(process.env.MODEL_URL);
+    // const model = await tf.loadLayersModel(process.env.MODEL_URL);
+    const model = await tf.loadLayersModel(`file://${modelPath}`);
 
     console.log("Model berhasil dimuat");
     return model;

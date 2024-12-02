@@ -10,18 +10,18 @@ exports.insertShopeeSalesHandler = async (req, res) => {
   const userId = req.body.user_id; // User ID dari request body
 
   if (!file) {
-    return res.status(400).json({ message: "Tidak ada file yang diunggah" });
+    return res.status(400).json({ message: "Tidak ada file yang diunggah." });
   }
 
   if (!userId) {
-    return res.status(400).json({ message: "User ID diperlukan" });
+    return res.status(400).json({ message: "User ID diperlukan." });
   }
 
   try {
     // Cek apakah user_id valid (opsional, jika perlu validasi user_id)
     const user = await Users.findByPk(userId);
     if (!user) {
-      return res.status(404).json({ message: "User tidak ditemukan" });
+      return res.status(404).json({ message: "User tidak ditemukan." });
     }
 
     // Membaca file Excel dari buffer (tanpa menyimpan ke disk)
@@ -61,7 +61,7 @@ exports.insertShopeeSalesHandler = async (req, res) => {
         return {
           user_id: userId,
           amount: parseInt(row["Total Harga Produk"] * 1000) || 0,
-          transaction_type: "income", 
+          transaction_type: "income",
           date: formattedDate,
           catatan: `Penjualan Shopee | ${
             row["No. Pesanan"] ? `Invoice: ${row["No. Pesanan"]} | ` : ""
@@ -77,8 +77,7 @@ exports.insertShopeeSalesHandler = async (req, res) => {
       totalTransaksi: transactions.length,
     });
   } catch (error) {
-    console.error("Terjadi kesalahan saat memproses file:", error);
-    res.status(500).json({ message: "Terjadi kesalahan di server" });
+    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
   }
 };
 
@@ -140,7 +139,7 @@ exports.insertShopeeBalanceHandler = async (req, res) => {
 
     // Mengonversi data mulai dari baris ke-5 hingga baris terakhir
     const data = xlsx.utils.sheet_to_json(worksheet, {
-      range: `A18:${endCell}`, 
+      range: `A18:${endCell}`,
       blankrows: false,
     });
 
@@ -171,7 +170,6 @@ exports.insertShopeeBalanceHandler = async (req, res) => {
       totalTransaksi: transactions.length,
     });
   } catch (error) {
-    console.error("Terjadi kesalahan saat memproses file:", error);
-    res.status(500).json({ message: "Terjadi kesalahan di server" });
+    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
   }
 };

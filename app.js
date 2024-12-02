@@ -65,7 +65,7 @@ const HOST = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
       amount: 200000,
       transaction_type: "income",
       date: new Date("2024-11-28"),
-      catatan: "Initial deposit",
+      catatan: "Top Up ML",
     });
 
     await user.createTransaction({
@@ -73,7 +73,15 @@ const HOST = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
       amount: 50000,
       transaction_type: "expense",
       date: new Date("2024-11-29"),
-      catatan: "Purchase",
+      catatan: "Nonton Konser",
+    });
+
+    await user.createTransaction({
+      transaction_id: 3,
+      amount: 50000,
+      transaction_type: "expense",
+      date: new Date("2024-11-29"),
+      catatan: "Saweria",
     });
 
     // Mulai server
