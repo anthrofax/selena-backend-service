@@ -13,82 +13,101 @@ const getDashboardDataHandler = async (req, res) => {
       .json({ message: `Query Parameter 'user_id' perlu dipass in` });
 
   let anomalyTransactions = [];
-  const user = await Users.findByPk(+user_id);
 
-  if (!user)
-    return res
-      .status(400)
-      .json({ message: `User dengan id ${user_id} tidak tersedia.` });
+  try {
+    const user = await Users.findByPk(+user_id);
 
-  const model = req.app.model;
+    if (!user)
+      return res
+        .status(400)
+        .json({ message: `User dengan id ${user_id} tidak tersedia.` });
 
-  const userTransactions = await user.getTransactions();
+    const model = req.app.model;
 
-  const expenseTransactions = userTransactions.filter(
-    ({ dataValues }) => dataValues.transaction_type === "expense"
-  );
-  console.log(expenseTransactions);
+    const userTransactions = await user.getTransactions();
 
-  const totalIncome = userTransactions
-    .filter(({ dataValues }) => dataValues.transaction_type === "income")
-    .reduce((acc, { dataValues }) => acc + dataValues.amount, 0);
-  const totalExpense = expenseTransactions.reduce(
-    (acc, { dataValues }) => acc + dataValues.amount,
-    0
-  );
+    // Mendapatkan tanggal satu bulan yang lalu
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
 
-  if (expenseTransactions.length > 1) {
-    const formatExpenseTransactions = expenseTransactions.map(
-      ({ dataValues }) => {
-        const { transaction_id, amount, date } = dataValues;
+    // Filter transaksi untuk satu bulan terakhir
+    const recentTransactions = userTransactions.filter(({ dataValues }) => {
+      const transactionDate = new Date(dataValues.date);
+      return transactionDate >= oneMonthAgo;
+    });
 
-        return {
-          date,
-          amount,
-          transactionId: transaction_id,
-        };
-      }
+    const expenseTransactions = recentTransactions.filter(
+      ({ dataValues }) => dataValues.transaction_type === "expense"
+    );
+    console.log(expenseTransactions);
+
+    const totalIncome = recentTransactions
+      .filter(({ dataValues }) => dataValues.transaction_type === "income")
+      .reduce((acc, { dataValues }) => acc + dataValues.amount, 0);
+    const totalExpense = expenseTransactions.reduce(
+      (acc, { dataValues }) => acc + dataValues.amount,
+      0
     );
 
-    // // Proses data
-    const { normalizedData, minValues, maxValues } = preprocessData(formatExpenseTransactions);
+    if (expenseTransactions.length > 1) {
+      const formatExpenseTransactions = expenseTransactions.map(
+        ({ dataValues }) => {
+          const { transaction_id, amount, date } = dataValues;
 
-    // // Latih model
-    await trainModel(model, normalizedData, 100);
+          return {
+            date,
+            amount,
+            transactionId: transaction_id,
+          };
+        }
+      );
 
-    // // Deteksi anomali dengan persentil yang ditentukan (misalnya, 95)
-    anomalyTransactions = await detectAnomalies(
-      model,
-      normalizedData,
-      minValues,
-      maxValues,
-      formatExpenseTransactions,
-      99
-    );
+      // // Proses data
+      const { normalizedData, minValues, maxValues } = preprocessData(
+        formatExpenseTransactions
+      );
 
-    anomalyTransactions = JSON.parse(anomalyTransactions).map(
-      (anomalyTransaction) => ({
-        date: anomalyTransaction.date,
-        amount: anomalyTransaction.amount,
-        catatan:
-          expenseTransactions.find(
-            ({ dataValues }) =>
-              dataValues.transaction_id === anomalyTransaction.transactionId
-          )?.catatan || "",
-      })
-    );
+      // // Latih model
+      await trainModel(model, normalizedData, 100);
+
+      // // Deteksi anomali dengan persentil yang ditentukan (misalnya, 95)
+      anomalyTransactions = await detectAnomalies(
+        model,
+        normalizedData,
+        minValues,
+        maxValues,
+        formatExpenseTransactions,
+        99
+      );
+
+      anomalyTransactions = JSON.parse(anomalyTransactions).map(
+        (anomalyTransaction) => ({
+          date: anomalyTransaction.date,
+          amount: anomalyTransaction.amount,
+          catatan:
+            expenseTransactions.find(
+              ({ dataValues }) =>
+                dataValues.transaction_id === anomalyTransaction.transactionId
+            )?.catatan || "",
+        })
+      );
+    }
+
+    res.status(200).json({
+      message: "Data analisis berhasil diambil",
+      totalIncome,
+      totalExpense,
+      financialAdvice:
+        totalExpense > totalIncome
+          ? "Pengeluaran Anda melebihi pendapatan, pertimbangkan untuk mengurangi pengeluaran."
+          : "Keuangan Anda sehat, pertimbangkan untuk menabung lebih banyak.",
+      anomalyTransactions,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Terjadi kesalahan di server", error: error.message });
   }
-
-  res.status(200).json({
-    message: "Data analisis berhasil diambil",
-    totalIncome,
-    totalExpense,
-    financialAdvice:
-      totalExpense > totalIncome
-        ? "Pengeluaran Anda melebihi pendapatan, pertimbangkan untuk mengurangi pengeluaran."
-        : "Keuangan Anda sehat, pertimbangkan untuk menabung lebih banyak.",
-    anomalyTransactions,
-  });
 };
 
 // Fungsi untuk melatih model
