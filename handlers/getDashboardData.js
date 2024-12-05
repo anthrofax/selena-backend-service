@@ -1,8 +1,5 @@
-// const Transactions = require("../models/transaction");
-// const { Sequelize } = require("sequelize");
 const tf = require("@tensorflow/tfjs");
 const Users = require("../models/user");
-// const express = require("express");
 
 const getDashboardDataHandler = async (req, res) => {
   const { user_id } = req.query;

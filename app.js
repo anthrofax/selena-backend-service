@@ -32,6 +32,14 @@ app.use("/", (req, res) => {
   res.send("Response Success!");
 });
 
+app.use("/", (req, res) => {
+  console.log("Response success");
+  res.json({
+    message:
+      "API dengan route yang anda panggil tidak tersedia, pastikan tidak ada typo atau coba endpoint lain!",
+  });
+});
+
 Transactions.belongsTo(Users, {
   constraints: true,
   foreignKey: "user_id",
