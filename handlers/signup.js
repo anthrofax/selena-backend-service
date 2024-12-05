@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
-const firestore = require("../helper/firestore");
 const Users = require("../models/user");
 const transporter = require("../helper/emailTransporter");
+const redis = require("../helper/redis");
 
 exports.signupHandler = async (req, res) => {
   const { name, email, password } = req.body;
@@ -32,14 +32,10 @@ exports.signupHandler = async (req, res) => {
 
     // Generate OTP acak (6 digit angka)
     const otp = crypto.randomInt(100000, 999999);
-    const otpExpiration = Date.now() + 15 * 60 * 1000; // OTP akan kedaluwarsa dalam 15 menit
+    const otpExpiration = 15 * 60; // Waktu kedaluwarsa dalam detik (15 menit)
 
-    // Simpan OTP di Firestore
-    const otpRef = firestore.collection("otp_verifications").doc(email);
-    await otpRef.set({
-      otp,
-      expiration: otpExpiration,
-    });
+    // Simpan OTP di Redis dengan waktu kedaluwarsa
+    await redis.setex(email, otpExpiration, otp);
 
     const htmlTemplate = `
     <!DOCTYPE html>
@@ -127,7 +123,9 @@ exports.signupHandler = async (req, res) => {
       });
     });
   } catch (error) {
-    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
+    res
+      .status(500)
+      .json({ message: "Terjadi kesalahan di server", error: error.message });
   }
 };
 
@@ -142,26 +140,17 @@ exports.verifyOtpHandler = async (req, res) => {
   }
 
   try {
-    // Ambil OTP dari Firestore
-    const otpRef = firestore.collection("otp_verifications").doc(email);
-    const otpDoc = await otpRef.get();
+    // Ambil OTP dari Redis
+    const storedOtp = await redis.get(email);
 
-    if (!otpDoc.exists) {
+    if (!storedOtp) {
       return res
         .status(400)
         .json({ message: "OTP tidak ditemukan atau sudah kedaluwarsa." });
     }
 
-    const { otp: storedOtp, expiration } = otpDoc.data();
-
-    // Periksa apakah OTP sudah kedaluwarsa
-    if (Date.now() > expiration) {
-      await otpRef.delete(); // Hapus OTP yang sudah kedaluwarsa dari Firestore
-      return res.status(400).json({ message: "OTP sudah kedaluwarsa." });
-    }
-
     // Verifikasi OTP
-    if (storedOtp !== parseInt(otp)) {
+    if (storedOtp !== otp) {
       return res.status(400).json({ message: "OTP tidak valid." });
     }
 
@@ -180,9 +169,11 @@ exports.verifyOtpHandler = async (req, res) => {
       message: "Pendaftaran akun berhasil!",
     });
 
-    // Hapus OTP dari Firestore setelah registrasi berhasil
-    await otpRef.delete();
+    // Hapus OTP dari Redis setelah registrasi berhasil
+    await redis.del(email);
   } catch (error) {
-    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
+    res
+      .status(500)
+      .json({ message: "Terjadi kesalahan di server", error: error.message });
   }
 };
