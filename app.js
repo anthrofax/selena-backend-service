@@ -17,11 +17,6 @@ app.use(router);
 
 app.use("/", (req, res) => {
   console.log("Response success");
-  res.send("Response Success!");
-});
-
-app.use("/", (req, res) => {
-  console.log("Response success");
   res.json({
     message:
       "API dengan route yang anda panggil tidak tersedia, pastikan tidak ada typo atau coba endpoint lain!",
