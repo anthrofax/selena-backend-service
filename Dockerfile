@@ -1,6 +1,6 @@
 FROM node:20
 WORKDIR /app
-ENV PORT 8080
+ENV PORT 8000
 ENV NODE_ENV "production"
 ENV DB_HOST "34.101.206.199"
 ENV DB_USER "cloud_computing"
@@ -12,5 +12,5 @@ ENV JWT_SECRET "G8MoIWZbYcZHVddUNDlQIbsqco8uyXoVoYgluWDaWj1hUkDfUC9nc5tC4tPqzOIT
 ENV MODEL_URL "https://storage.googleapis.com/selena_model_bucket/my-autoencoder.json"
 COPY . .
 RUN npm install
-EXPOSE 8080
+EXPOSE 8000
 CMD [ "npm", "run", "start"]

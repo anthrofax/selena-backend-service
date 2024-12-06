@@ -3,7 +3,9 @@ const express = require("express");
 const upload = require("../helper/multer");
 const verifyToken = require("../handlers/verifyToken");
 const getDashboardDataHandler = require("../handlers/getDashboardData");
-const { insertTokopediaSalesHandler } = require("../handlers/insertTokopedia");
+const {
+  insertTokopediaSalesHandler,
+} = require("../handlers/insertTokopedia");
 const { insertShopeeBalanceHandler } = require("../handlers/insertShopee");
 const getTransactionsHandler = require("../handlers/getTransactions");
 const getTransactionDetailHandler = require("../handlers/getTransactionDetail");
@@ -15,6 +17,8 @@ const router = express.Router();
 
 // Fitur Dashboard
 router.get("/dashboard", verifyToken, getDashboardDataHandler);
+
+router.get("/upload-model", getDashboardDataHandler);
 
 // Fitur Pencatatan Keuangan
 // 1. Upload CSV

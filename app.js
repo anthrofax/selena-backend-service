@@ -6,20 +6,8 @@ const sequelize = require("./helper/db");
 const Transactions = require("./models/transaction");
 const Users = require("./models/user");
 const authRoutes = require("./routes/authRoutes");
-const {
-  loadModel,
-  loadRawDataForPreprocessNeeds,
-} = require("./helper/loadModel");
 
 const app = express();
-
-(async () => {
-  const model = await loadModel();
-  const rawData = await loadRawDataForPreprocessNeeds();
-
-  app.model = model;
-  app.rawData = rawData;
-})();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
