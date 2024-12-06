@@ -1,50 +1,53 @@
-'use strict'
-const {Storage} = require('@google-cloud/storage')
-const dateFormat = require('dateformat')
-const path = require('path');
+"use strict";
+const { Storage } = require("@google-cloud/storage");
+const path = require("path");
 
-const pathKey = path.resolve('./serviceaccountkey.json')
+const pathKey = path.resolve(process.env.SERVICE_ACC_KEY_PATH);
 
 // TODO: Sesuaikan konfigurasi Storage
 const gcs = new Storage({
-    projectId: 'project-id',
-    keyFilename: pathKey
-})
+  projectId: process.env.PROJECT_ID,
+  keyFilename: pathKey,
+});
 
 // TODO: Tambahkan nama bucket yang digunakan
-const bucketName = 'bucket-name';
-const bucket = gcs.bucket(bucketName)
+const bucketName = process.env.BUCKET_NAME;
+const bucket = gcs.bucket(bucketName);
 
-function getPublicUrl(filename) {
-    return 'https://storage.googleapis.com/' + bucketName + '/' + filename;
-}
+exports.getPublicUrl = (filename) => {
+  return "https://storage.googleapis.com/" + bucketName + "/" + filename;
+};
 
-let ImgUpload = {}
+// Helper function to determine content type based on file extension
+const getContentType = (filePath) => {
+  const extname = path.extname(filePath).toLowerCase();
 
-ImgUpload.uploadToGcs = (req, res, next) => {
-    if (!req.file) return next()
+  switch (extname) {
+    case ".json":
+      return "application/json";
+    case ".bin":
+      return "application/octet-stream";
+    default:
+      return "application/octet-stream"; // Default to binary for unknown file types
+  }
+};
 
-    const gcsname = dateFormat(new Date(), "yyyymmdd-HHMMss")
-    const file = bucket.file(gcsname)
+// Function to upload file to Google Cloud Storage
+exports.uploadToGCS = async (localFilePath, gcsFilePath) => {
+  try {
+    const customMetadata = {
+      contentType: getContentType(localFilePath),
+    };
 
-    const stream = file.createWriteStream({
-        metadata: {
-            contentType: req.file.mimetype
-        }
-    })
+    const optionsUploadObject = {
+      destination: gcsFilePath,
+      // preconditionOpts: { ifGenerationMatch: 0 },
+      metadata: customMetadata,
+    };
 
-    stream.on('error', (err) => {
-        req.file.cloudStorageError = err
-        next(err)
-    })
-
-    stream.on('finish', () => {
-        req.file.cloudStorageObject = gcsname
-        req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
-        next()
-    })
-
-    stream.end(req.file.buffer)
-}
-
-module.exports = ImgUpload
+    await bucket.upload(localFilePath, optionsUploadObject);
+    console.log(`${localFilePath} uploaded to ${bucketName} bucket`);
+  } catch (uploadError) {
+    throw (`Gagal mengupload ${localFilePath}:`, uploadError.message);
+  }
+};
