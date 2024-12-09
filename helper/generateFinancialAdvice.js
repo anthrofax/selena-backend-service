@@ -47,7 +47,7 @@ const generateFinancialAdvice = (
   // Anomali transactions dapat mempengaruhi advice
   if (anomalyTransactions.length > 0) {
     financialAdvice +=
-      " Terdapat beberapa transaksi yang tidak biasa, pastikan untuk memeriksa transaksi tersebut dan pertimbangkan untuk melaporkan ke pihak relevan jika ada kesalahan.";
+      ` Terdapat ${anomalyTransactions.length > 1 ? "beberapa " : ""}transaksi yang tidak biasa, pastikan untuk memeriksa transaksi tersebut dan pertimbangkan untuk melaporkan ke pihak relevan jika ada kesalahan.`;
   }
 
   return financialAdvice;

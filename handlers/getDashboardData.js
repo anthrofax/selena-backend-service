@@ -5,6 +5,7 @@ const modelAndDataAdjustment = require("../helper/modelProcessing");
 const detectAnomalies = require("../helper/detectAnomalies");
 const { uploadToGCS } = require("../helper/bucket");
 const generateFinancialAdvice = require("../helper/generateFinancialAdvice");
+const { loadModel } = require("../helper/loadModel");
 
 const getDashboardDataHandler = async (req, res) => {
   const { user_id } = req.query;
@@ -24,7 +25,9 @@ const getDashboardDataHandler = async (req, res) => {
         .status(400)
         .json({ message: `User dengan id ${user_id} tidak tersedia.` });
 
-    const model = req.app.model;
+    const userModelFolder = `user_${user_id}`; // Folder yang spesifik untuk user_id
+    const model = (await loadModel(userModelFolder)) || (await loadModel());
+
     const userTransactions = await user.getTransactions();
 
     if (userTransactions.length === 0) {
@@ -80,6 +83,14 @@ const getDashboardDataHandler = async (req, res) => {
 
       await model.save(`file://${modelFolderPath}`);
 
+      const modelPath = path.join(
+        __dirname,
+        "..",
+        "tmp",
+        "model_folder",
+        "model.json"
+      );
+
       const weightsPath = path.join(
         __dirname,
         "..",
@@ -88,7 +99,9 @@ const getDashboardDataHandler = async (req, res) => {
         "weights.bin"
       );
 
-      await uploadToGCS(weightsPath, "weights.bin");
+      // Upload model dan weights ke Google Cloud Storage dengan folder berdasarkan user_id
+      await uploadToGCS(modelPath, `${userModelFolder}/model.json`);
+      await uploadToGCS(weightsPath, `${userModelFolder}/weights.bin`);
 
       // Pastikan folder kosong sebelum dihapus
       fs.rmSync(path.join(__dirname, "..", "tmp", "model_folder"), {
@@ -96,7 +109,7 @@ const getDashboardDataHandler = async (req, res) => {
         force: true,
       });
 
-      // Deteksi anomali dengan persentil yang ditentukan (misalnya, 95)
+      // Deteksi anomali dengan persentil yang ditentukan (misalnya, 50)
       anomalyTransactions = await detectAnomalies(
         model,
         normalizedData,

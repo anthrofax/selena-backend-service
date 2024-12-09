@@ -1,4 +1,5 @@
 FROM node:20
+WORKDIR /app
 ENV PORT 8000
 ENV NODE_ENV "production"
 ENV DB_HOST "34.101.206.199"
