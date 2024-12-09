@@ -1,11 +1,11 @@
-const detectAnomalies = async (
+async function detectAnomalies(
   model,
   data,
   minValues,
   maxValues,
   rawData,
   percentileThreshold = 97
-) => {
+) {
   // Prediksi rekonstruksi data
   const reconstructed = model.predict(data);
   const reconstructionError = data.sub(reconstructed).square().mean(1); // MSE per data point
@@ -34,6 +34,6 @@ const detectAnomalies = async (
 
   // Mengembalikan anomali dalam format JSON
   return JSON.stringify(anomalies, null, 2); // Menyusun JSON yang lebih terstruktur
-};
+}
 
 module.exports = detectAnomalies;

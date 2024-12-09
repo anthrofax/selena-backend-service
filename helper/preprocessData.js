@@ -19,7 +19,7 @@ const preprocessData = (rawData) => {
   const maxValues = dataTensor.max(0);
   const normalizedData = dataTensor
     .sub(minValues)
-    .div(maxValues.sub(minValues));
+    .div((maxValues.sub(minValues) === 0 || 1 ));
 
   // Mengembalikan data normalisasi dan nilai min/max
   return { normalizedData, minValues, maxValues, processedData };

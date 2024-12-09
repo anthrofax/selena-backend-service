@@ -2,7 +2,7 @@
 const { Storage } = require("@google-cloud/storage");
 const path = require("path");
 
-const pathKey = path.resolve(process.env.SERVICE_ACC_KEY_PATH);
+const pathKey = path.join(__dirname, "..", process.env.SERVICE_ACC_KEY_PATH);
 
 // TODO: Sesuaikan konfigurasi Storage
 const gcs = new Storage({
