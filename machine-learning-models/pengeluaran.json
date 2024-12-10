@@ -1,0 +1,2497 @@
+[
+    {
+        "date": "2023-08-03",
+        "amount": 20000,
+        "transactionId": 8446
+    },
+    {
+        "date": "2023-08-08",
+        "amount": 186450,
+        "transactionId": 7157
+    },
+    {
+        "date": "2023-08-12",
+        "amount": 384000,
+        "transactionId": 9625
+    },
+    {
+        "date": "2023-08-12",
+        "amount": 400000,
+        "transactionId": 2155
+    },
+    {
+        "date": "2023-08-14",
+        "amount": 150000,
+        "transactionId": 4706
+    },
+    {
+        "date": "2023-08-16",
+        "amount": 5500,
+        "transactionId": 5572
+    },
+    {
+        "date": "2023-08-16",
+        "amount": 2500,
+        "transactionId": 6311
+    },
+    {
+        "date": "2023-08-18",
+        "amount": 500,
+        "transactionId": 8583
+    },
+    {
+        "date": "2023-08-23",
+        "amount": 100000,
+        "transactionId": 3677
+    },
+    {
+        "date": "2023-08-29",
+        "amount": 164000,
+        "transactionId": 2874
+    },
+    {
+        "date": "2023-09-04",
+        "amount": 200000,
+        "transactionId": 5582
+    },
+    {
+        "date": "2023-09-04",
+        "amount": 100000,
+        "transactionId": 6987
+    },
+    {
+        "date": "2023-09-04",
+        "amount": 100000,
+        "transactionId": 4421
+    },
+    {
+        "date": "2023-09-06",
+        "amount": 500,
+        "transactionId": 7526
+    },
+    {
+        "date": "2023-09-08",
+        "amount": 50000,
+        "transactionId": 1207
+    },
+    {
+        "date": "2023-09-15",
+        "amount": 513400,
+        "transactionId": 8492
+    },
+    {
+        "date": "2023-09-16",
+        "amount": 5500,
+        "transactionId": 8369
+    },
+    {
+        "date": "2023-09-16",
+        "amount": 2500,
+        "transactionId": 4526
+    },
+    {
+        "date": "2023-09-16",
+        "amount": 100000,
+        "transactionId": 9838
+    },
+    {
+        "date": "2023-09-18",
+        "amount": 250130,
+        "transactionId": 8109
+    },
+    {
+        "date": "2023-09-22",
+        "amount": 500,
+        "transactionId": 6970
+    },
+    {
+        "date": "2023-09-23",
+        "amount": 20000,
+        "transactionId": 5536
+    },
+    {
+        "date": "2023-09-24",
+        "amount": 10000,
+        "transactionId": 1731
+    },
+    {
+        "date": "2023-09-26",
+        "amount": 20000,
+        "transactionId": 6199
+    },
+    {
+        "date": "2023-09-28",
+        "amount": 20000,
+        "transactionId": 1360
+    },
+    {
+        "date": "2023-09-30",
+        "amount": 50000,
+        "transactionId": 3919
+    },
+    {
+        "date": "2023-09-30",
+        "amount": 1000,
+        "transactionId": 4874
+    },
+    {
+        "date": "2023-10-03",
+        "amount": 700000,
+        "transactionId": 2475
+    },
+    {
+        "date": "2023-10-04",
+        "amount": 376050,
+        "transactionId": 8851
+    },
+    {
+        "date": "2023-10-04",
+        "amount": 150000,
+        "transactionId": 7947
+    },
+    {
+        "date": "2023-10-06",
+        "amount": 500,
+        "transactionId": 3274
+    },
+    {
+        "date": "2023-10-10",
+        "amount": 500,
+        "transactionId": 3537
+    },
+    {
+        "date": "2023-10-16",
+        "amount": 5500,
+        "transactionId": 6646
+    },
+    {
+        "date": "2023-10-16",
+        "amount": 77682,
+        "transactionId": 6382
+    },
+    {
+        "date": "2023-10-16",
+        "amount": 2500,
+        "transactionId": 8320
+    },
+    {
+        "date": "2023-10-25",
+        "amount": 90053,
+        "transactionId": 8392
+    },
+    {
+        "date": "2023-10-25",
+        "amount": 250000,
+        "transactionId": 5135
+    },
+    {
+        "date": "2023-11-01",
+        "amount": 200000,
+        "transactionId": 9730
+    },
+    {
+        "date": "2023-11-01",
+        "amount": 300000,
+        "transactionId": 3024
+    },
+    {
+        "date": "2023-11-02",
+        "amount": 300318,
+        "transactionId": 9357
+    },
+    {
+        "date": "2023-11-06",
+        "amount": 500,
+        "transactionId": 9746
+    },
+    {
+        "date": "2023-11-10",
+        "amount": 268250,
+        "transactionId": 8579
+    },
+    {
+        "date": "2023-11-16",
+        "amount": 2500,
+        "transactionId": 4360
+    },
+    {
+        "date": "2023-11-16",
+        "amount": 5500,
+        "transactionId": 2482
+    },
+    {
+        "date": "2023-12-01",
+        "amount": 100000,
+        "transactionId": 2534
+    },
+    {
+        "date": "2023-12-06",
+        "amount": 182300,
+        "transactionId": 1392
+    },
+    {
+        "date": "2023-12-06",
+        "amount": 300000,
+        "transactionId": 9775
+    },
+    {
+        "date": "2023-12-06",
+        "amount": 100000,
+        "transactionId": 9425
+    },
+    {
+        "date": "2023-12-06",
+        "amount": 11900,
+        "transactionId": 9279
+    },
+    {
+        "date": "2023-12-10",
+        "amount": 500,
+        "transactionId": 3475
+    },
+    {
+        "date": "2023-12-15",
+        "amount": 100000,
+        "transactionId": 1533
+    },
+    {
+        "date": "2023-12-16",
+        "amount": 2500,
+        "transactionId": 2960
+    },
+    {
+        "date": "2023-12-16",
+        "amount": 5500,
+        "transactionId": 4861
+    },
+    {
+        "date": "2023-12-20",
+        "amount": 300000,
+        "transactionId": 4798
+    },
+    {
+        "date": "2023-12-25",
+        "amount": 77808,
+        "transactionId": 4412
+    },
+    {
+        "date": "2023-12-29",
+        "amount": 100000,
+        "transactionId": 2850
+    },
+    {
+        "date": "2023-12-29",
+        "amount": 111900,
+        "transactionId": 4107
+    },
+    {
+        "date": "2023-12-29",
+        "amount": 337100,
+        "transactionId": 2349
+    },
+    {
+        "date": "2023-12-30",
+        "amount": 100000,
+        "transactionId": 5427
+    },
+    {
+        "date": "2024-01-02",
+        "amount": 680000,
+        "transactionId": 6536
+    },
+    {
+        "date": "2024-01-02",
+        "amount": 2500,
+        "transactionId": 5276
+    },
+    {
+        "date": "2024-01-02",
+        "amount": 100000,
+        "transactionId": 3324
+    },
+    {
+        "date": "2024-01-02",
+        "amount": 15000,
+        "transactionId": 6797
+    },
+    {
+        "date": "2024-01-02",
+        "amount": 1500,
+        "transactionId": 9766
+    },
+    {
+        "date": "2024-01-02",
+        "amount": 200000,
+        "transactionId": 4702
+    },
+    {
+        "date": "2024-01-02",
+        "amount": 400183,
+        "transactionId": 4856
+    },
+    {
+        "date": "2024-01-02",
+        "amount": 1500,
+        "transactionId": 3353
+    },
+    {
+        "date": "2024-01-04",
+        "amount": 500,
+        "transactionId": 5930
+    },
+    {
+        "date": "2024-01-06",
+        "amount": 500,
+        "transactionId": 7025
+    },
+    {
+        "date": "2024-01-08",
+        "amount": 50000,
+        "transactionId": 7848
+    },
+    {
+        "date": "2024-01-09",
+        "amount": 1000,
+        "transactionId": 6997
+    },
+    {
+        "date": "2024-01-09",
+        "amount": 1000,
+        "transactionId": 8992
+    },
+    {
+        "date": "2024-01-09",
+        "amount": 60000,
+        "transactionId": 4040
+    },
+    {
+        "date": "2024-01-09",
+        "amount": 20000,
+        "transactionId": 4495
+    },
+    {
+        "date": "2024-01-11",
+        "amount": 3000,
+        "transactionId": 7266
+    },
+    {
+        "date": "2024-01-11",
+        "amount": 50000,
+        "transactionId": 4653
+    },
+    {
+        "date": "2024-01-12",
+        "amount": 50178,
+        "transactionId": 6067
+    },
+    {
+        "date": "2024-01-12",
+        "amount": 67000,
+        "transactionId": 2582
+    },
+    {
+        "date": "2024-01-13",
+        "amount": 200000,
+        "transactionId": 6051
+    },
+    {
+        "date": "2024-01-14",
+        "amount": 100000,
+        "transactionId": 5423
+    },
+    {
+        "date": "2024-01-14",
+        "amount": 20000,
+        "transactionId": 1213
+    },
+    {
+        "date": "2024-01-15",
+        "amount": 2500,
+        "transactionId": 7867
+    },
+    {
+        "date": "2024-01-15",
+        "amount": 368000,
+        "transactionId": 1638
+    },
+    {
+        "date": "2024-01-16",
+        "amount": 2500,
+        "transactionId": 6248
+    },
+    {
+        "date": "2024-01-16",
+        "amount": 5500,
+        "transactionId": 9902
+    },
+    {
+        "date": "2024-01-19",
+        "amount": 33500,
+        "transactionId": 6150
+    },
+    {
+        "date": "2024-01-20",
+        "amount": 6000,
+        "transactionId": 1477
+    },
+    {
+        "date": "2024-01-20",
+        "amount": 1000,
+        "transactionId": 3332
+    },
+    {
+        "date": "2024-01-23",
+        "amount": 58000,
+        "transactionId": 7195
+    },
+    {
+        "date": "2024-01-23",
+        "amount": 2500,
+        "transactionId": 3470
+    },
+    {
+        "date": "2024-01-25",
+        "amount": 2800000,
+        "transactionId": 4130
+    },
+    {
+        "date": "2024-01-25",
+        "amount": 3000000,
+        "transactionId": 1
+    },
+    {
+        "date": "2024-01-26",
+        "amount": 50000,
+        "transactionId": 7609
+    },
+    {
+        "date": "2024-01-28",
+        "amount": 2000,
+        "transactionId": 3390
+    },
+    {
+        "date": "2024-01-30",
+        "amount": 2500,
+        "transactionId": 8998
+    },
+    {
+        "date": "2024-01-30",
+        "amount": 2800000,
+        "transactionId": 4293
+    },
+    {
+        "date": "2024-01-31",
+        "amount": 2500,
+        "transactionId": 5479
+    },
+    {
+        "date": "2024-01-31",
+        "amount": 240000,
+        "transactionId": 1913
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 20000,
+        "transactionId": 5889
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 1500,
+        "transactionId": 3199
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 100000,
+        "transactionId": 8888
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 1500,
+        "transactionId": 6067
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 680000,
+        "transactionId": 7946
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 6500,
+        "transactionId": 8421
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 7845000,
+        "transactionId": 2
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 100000,
+        "transactionId": 2446
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 2500,
+        "transactionId": 5568
+    },
+    {
+        "date": "2024-02-02",
+        "amount": 3000000,
+        "transactionId": 2924
+    },
+    {
+        "date": "2024-02-03",
+        "amount": 200000,
+        "transactionId": 2702
+    },
+    {
+        "date": "2024-02-04",
+        "amount": 2500,
+        "transactionId": 5000
+    },
+    {
+        "date": "2024-02-04",
+        "amount": 1000,
+        "transactionId": 6809
+    },
+    {
+        "date": "2024-02-04",
+        "amount": 332000,
+        "transactionId": 7533
+    },
+    {
+        "date": "2024-02-05",
+        "amount": 1000000,
+        "transactionId": 5603
+    },
+    {
+        "date": "2024-02-05",
+        "amount": 1000,
+        "transactionId": 9182
+    },
+    {
+        "date": "2024-02-06",
+        "amount": 2000,
+        "transactionId": 6181
+    },
+    {
+        "date": "2024-02-09",
+        "amount": 100000,
+        "transactionId": 9922
+    },
+    {
+        "date": "2024-02-10",
+        "amount": 500,
+        "transactionId": 4425
+    },
+    {
+        "date": "2024-02-12",
+        "amount": 200000,
+        "transactionId": 6713
+    },
+    {
+        "date": "2024-02-15",
+        "amount": 200000,
+        "transactionId": 2636
+    },
+    {
+        "date": "2024-02-15",
+        "amount": 2500,
+        "transactionId": 3708
+    },
+    {
+        "date": "2024-02-15",
+        "amount": 150000,
+        "transactionId": 2396
+    },
+    {
+        "date": "2024-02-16",
+        "amount": 5500,
+        "transactionId": 2278
+    },
+    {
+        "date": "2024-02-16",
+        "amount": 2500,
+        "transactionId": 7993
+    },
+    {
+        "date": "2024-02-19",
+        "amount": 50000,
+        "transactionId": 8500
+    },
+    {
+        "date": "2024-02-19",
+        "amount": 3000,
+        "transactionId": 1786
+    },
+    {
+        "date": "2024-02-20",
+        "amount": 1000,
+        "transactionId": 2012
+    },
+    {
+        "date": "2024-02-20",
+        "amount": 6000,
+        "transactionId": 1431
+    },
+    {
+        "date": "2024-02-21",
+        "amount": 200000,
+        "transactionId": 1760
+    },
+    {
+        "date": "2024-02-26",
+        "amount": 200000,
+        "transactionId": 1192
+    },
+    {
+        "date": "2024-02-26",
+        "amount": 1000000,
+        "transactionId": 1115
+    },
+    {
+        "date": "2024-02-27",
+        "amount": 200000,
+        "transactionId": 1543
+    },
+    {
+        "date": "2024-02-28",
+        "amount": 150000,
+        "transactionId": 5749
+    },
+    {
+        "date": "2024-02-28",
+        "amount": 200000,
+        "transactionId": 2627
+    },
+    {
+        "date": "2024-02-28",
+        "amount": 2500,
+        "transactionId": 4983
+    },
+    {
+        "date": "2024-02-28",
+        "amount": 2500,
+        "transactionId": 1009
+    },
+    {
+        "date": "2024-02-28",
+        "amount": 3000000,
+        "transactionId": 7084
+    },
+    {
+        "date": "2024-03-02",
+        "amount": 200000,
+        "transactionId": 3823
+    },
+    {
+        "date": "2024-03-02",
+        "amount": 680000,
+        "transactionId": 6328
+    },
+    {
+        "date": "2024-03-02",
+        "amount": 2500,
+        "transactionId": 1486
+    },
+    {
+        "date": "2024-03-03",
+        "amount": 15000,
+        "transactionId": 9795
+    },
+    {
+        "date": "2024-03-03",
+        "amount": 1500,
+        "transactionId": 2523
+    },
+    {
+        "date": "2024-03-03",
+        "amount": 1500,
+        "transactionId": 6189
+    },
+    {
+        "date": "2024-03-03",
+        "amount": 100000,
+        "transactionId": 4722
+    },
+    {
+        "date": "2024-03-04",
+        "amount": 1500,
+        "transactionId": 2704
+    },
+    {
+        "date": "2024-03-04",
+        "amount": 200000,
+        "transactionId": 9305
+    },
+    {
+        "date": "2024-03-04",
+        "amount": 400214,
+        "transactionId": 2424
+    },
+    {
+        "date": "2024-03-06",
+        "amount": 750,
+        "transactionId": 9678
+    },
+    {
+        "date": "2024-03-06",
+        "amount": 150000,
+        "transactionId": 6855
+    },
+    {
+        "date": "2024-03-07",
+        "amount": 100000,
+        "transactionId": 5784
+    },
+    {
+        "date": "2024-03-07",
+        "amount": 145000,
+        "transactionId": 3135
+    },
+    {
+        "date": "2024-03-08",
+        "amount": 35104,
+        "transactionId": 3410
+    },
+    {
+        "date": "2024-03-09",
+        "amount": 20000,
+        "transactionId": 5731
+    },
+    {
+        "date": "2024-03-11",
+        "amount": 200000,
+        "transactionId": 9480
+    },
+    {
+        "date": "2024-03-13",
+        "amount": 60000,
+        "transactionId": 9304
+    },
+    {
+        "date": "2024-03-13",
+        "amount": 1000,
+        "transactionId": 7156
+    },
+    {
+        "date": "2024-03-13",
+        "amount": 30500,
+        "transactionId": 2942
+    },
+    {
+        "date": "2024-03-16",
+        "amount": 2500,
+        "transactionId": 9919
+    },
+    {
+        "date": "2024-03-16",
+        "amount": 5500,
+        "transactionId": 2109
+    },
+    {
+        "date": "2024-03-20",
+        "amount": 1000,
+        "transactionId": 7713
+    },
+    {
+        "date": "2024-03-20",
+        "amount": 6000,
+        "transactionId": 1633
+    },
+    {
+        "date": "2024-03-22",
+        "amount": 20500,
+        "transactionId": 2555
+    },
+    {
+        "date": "2024-03-24",
+        "amount": 22000,
+        "transactionId": 3174
+    },
+    {
+        "date": "2024-03-25",
+        "amount": 200000,
+        "transactionId": 2527
+    },
+    {
+        "date": "2024-03-25",
+        "amount": 5000,
+        "transactionId": 9046
+    },
+    {
+        "date": "2024-03-25",
+        "amount": 10000,
+        "transactionId": 8710
+    },
+    {
+        "date": "2024-03-26",
+        "amount": 50000,
+        "transactionId": 1615
+    },
+    {
+        "date": "2024-03-26",
+        "amount": 3000,
+        "transactionId": 4586
+    },
+    {
+        "date": "2024-03-28",
+        "amount": 750,
+        "transactionId": 6921
+    },
+    {
+        "date": "2024-04-01",
+        "amount": 30000,
+        "transactionId": 4522
+    },
+    {
+        "date": "2024-04-01",
+        "amount": 200000,
+        "transactionId": 8599
+    },
+    {
+        "date": "2024-04-01",
+        "amount": 2500,
+        "transactionId": 7538
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 2500,
+        "transactionId": 4903
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 20000,
+        "transactionId": 8282
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 1500,
+        "transactionId": 5190
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 680000,
+        "transactionId": 7154
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 261300,
+        "transactionId": 4658
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 100000,
+        "transactionId": 2667
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 100000,
+        "transactionId": 7045
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 1000,
+        "transactionId": 8429
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 20000,
+        "transactionId": 8858
+    },
+    {
+        "date": "2024-04-02",
+        "amount": 1500,
+        "transactionId": 9537
+    },
+    {
+        "date": "2024-04-03",
+        "amount": 188700,
+        "transactionId": 3959
+    },
+    {
+        "date": "2024-04-03",
+        "amount": 100500,
+        "transactionId": 7829
+    },
+    {
+        "date": "2024-04-04",
+        "amount": 150000,
+        "transactionId": 9880
+    },
+    {
+        "date": "2024-04-04",
+        "amount": 750,
+        "transactionId": 9520
+    },
+    {
+        "date": "2024-04-06",
+        "amount": 750,
+        "transactionId": 9473
+    },
+    {
+        "date": "2024-04-07",
+        "amount": 2500,
+        "transactionId": 1366
+    },
+    {
+        "date": "2024-04-07",
+        "amount": 25000,
+        "transactionId": 7113
+    },
+    {
+        "date": "2024-04-08",
+        "amount": 750,
+        "transactionId": 5711
+    },
+    {
+        "date": "2024-04-11",
+        "amount": 50000,
+        "transactionId": 6179
+    },
+    {
+        "date": "2024-04-12",
+        "amount": 400135,
+        "transactionId": 2555
+    },
+    {
+        "date": "2024-04-12",
+        "amount": 86207,
+        "transactionId": 2968
+    },
+    {
+        "date": "2024-04-12",
+        "amount": 100101,
+        "transactionId": 4232
+    },
+    {
+        "date": "2024-04-12",
+        "amount": 1500,
+        "transactionId": 8497
+    },
+    {
+        "date": "2024-04-12",
+        "amount": 100000,
+        "transactionId": 7565
+    },
+    {
+        "date": "2024-04-13",
+        "amount": 100115,
+        "transactionId": 5087
+    },
+    {
+        "date": "2024-04-15",
+        "amount": 20500,
+        "transactionId": 2353
+    },
+    {
+        "date": "2024-04-16",
+        "amount": 332396,
+        "transactionId": 8237
+    },
+    {
+        "date": "2024-04-16",
+        "amount": 5500,
+        "transactionId": 5761
+    },
+    {
+        "date": "2024-04-16",
+        "amount": 2500,
+        "transactionId": 1035
+    },
+    {
+        "date": "2024-04-16",
+        "amount": 750,
+        "transactionId": 8452
+    },
+    {
+        "date": "2024-04-16",
+        "amount": 60118,
+        "transactionId": 6030
+    },
+    {
+        "date": "2024-04-17",
+        "amount": 41000,
+        "transactionId": 8713
+    },
+    {
+        "date": "2024-04-17",
+        "amount": 750,
+        "transactionId": 4359
+    },
+    {
+        "date": "2024-04-19",
+        "amount": 30000,
+        "transactionId": 8084
+    },
+    {
+        "date": "2024-04-19",
+        "amount": 1500,
+        "transactionId": 4218
+    },
+    {
+        "date": "2024-04-20",
+        "amount": 6000,
+        "transactionId": 9104
+    },
+    {
+        "date": "2024-04-20",
+        "amount": 1000,
+        "transactionId": 9278
+    },
+    {
+        "date": "2024-04-22",
+        "amount": 300000,
+        "transactionId": 2734
+    },
+    {
+        "date": "2024-04-26",
+        "amount": 1500,
+        "transactionId": 1177
+    },
+    {
+        "date": "2024-04-26",
+        "amount": 30000,
+        "transactionId": 2749
+    },
+    {
+        "date": "2024-04-27",
+        "amount": 1000,
+        "transactionId": 9811
+    },
+    {
+        "date": "2024-04-27",
+        "amount": 250000,
+        "transactionId": 4967
+    },
+    {
+        "date": "2024-04-29",
+        "amount": 100000,
+        "transactionId": 5907
+    },
+    {
+        "date": "2024-04-29",
+        "amount": 1500,
+        "transactionId": 1880
+    },
+    {
+        "date": "2024-04-29",
+        "amount": 20000,
+        "transactionId": 8819
+    },
+    {
+        "date": "2024-04-29",
+        "amount": 164000,
+        "transactionId": 1208
+    },
+    {
+        "date": "2024-04-29",
+        "amount": 1500,
+        "transactionId": 4031
+    },
+    {
+        "date": "2024-05-01",
+        "amount": 97090,
+        "transactionId": 3682
+    },
+    {
+        "date": "2024-05-02",
+        "amount": 680000,
+        "transactionId": 6688
+    },
+    {
+        "date": "2024-05-02",
+        "amount": 2500,
+        "transactionId": 6923
+    },
+    {
+        "date": "2024-05-03",
+        "amount": 300000,
+        "transactionId": 9678
+    },
+    {
+        "date": "2024-05-04",
+        "amount": 10000,
+        "transactionId": 1161
+    },
+    {
+        "date": "2024-05-04",
+        "amount": 200000,
+        "transactionId": 1236
+    },
+    {
+        "date": "2024-05-04",
+        "amount": 750,
+        "transactionId": 1200
+    },
+    {
+        "date": "2024-05-05",
+        "amount": 16000,
+        "transactionId": 2025
+    },
+    {
+        "date": "2024-05-05",
+        "amount": 32000,
+        "transactionId": 1637
+    },
+    {
+        "date": "2024-05-05",
+        "amount": 16000,
+        "transactionId": 1986
+    },
+    {
+        "date": "2024-05-05",
+        "amount": 150000,
+        "transactionId": 5947
+    },
+    {
+        "date": "2024-05-06",
+        "amount": 750,
+        "transactionId": 8001
+    },
+    {
+        "date": "2024-05-07",
+        "amount": 26500,
+        "transactionId": 3558
+    },
+    {
+        "date": "2024-05-08",
+        "amount": 239800,
+        "transactionId": 9195
+    },
+    {
+        "date": "2024-05-09",
+        "amount": 59200,
+        "transactionId": 3649
+    },
+    {
+        "date": "2024-05-09",
+        "amount": 3000,
+        "transactionId": 5890
+    },
+    {
+        "date": "2024-05-09",
+        "amount": 50000,
+        "transactionId": 7445
+    },
+    {
+        "date": "2024-05-09",
+        "amount": 7500,
+        "transactionId": 9892
+    },
+    {
+        "date": "2024-05-09",
+        "amount": 500000,
+        "transactionId": 7298
+    },
+    {
+        "date": "2024-05-11",
+        "amount": 16000,
+        "transactionId": 1582
+    },
+    {
+        "date": "2024-05-12",
+        "amount": 1500,
+        "transactionId": 8303
+    },
+    {
+        "date": "2024-05-14",
+        "amount": 20500,
+        "transactionId": 9434
+    },
+    {
+        "date": "2024-05-14",
+        "amount": 100500,
+        "transactionId": 8830
+    },
+    {
+        "date": "2024-05-15",
+        "amount": 200000,
+        "transactionId": 6294
+    },
+    {
+        "date": "2024-05-16",
+        "amount": 5500,
+        "transactionId": 6573
+    },
+    {
+        "date": "2024-05-16",
+        "amount": 2500,
+        "transactionId": 7481
+    },
+    {
+        "date": "2024-05-18",
+        "amount": 200000,
+        "transactionId": 3807
+    },
+    {
+        "date": "2024-05-18",
+        "amount": 800000,
+        "transactionId": 4393
+    },
+    {
+        "date": "2024-05-19",
+        "amount": 900000,
+        "transactionId": 2438
+    },
+    {
+        "date": "2024-05-20",
+        "amount": 1000,
+        "transactionId": 2719
+    },
+    {
+        "date": "2024-05-20",
+        "amount": 100000,
+        "transactionId": 8069
+    },
+    {
+        "date": "2024-05-20",
+        "amount": 6000,
+        "transactionId": 3313
+    },
+    {
+        "date": "2024-05-21",
+        "amount": 99000,
+        "transactionId": 7221
+    },
+    {
+        "date": "2024-05-22",
+        "amount": 2250,
+        "transactionId": 9248
+    },
+    {
+        "date": "2024-05-25",
+        "amount": 200000,
+        "transactionId": 9519
+    },
+    {
+        "date": "2024-05-25",
+        "amount": 20500,
+        "transactionId": 8797
+    },
+    {
+        "date": "2024-05-25",
+        "amount": 100000,
+        "transactionId": 8774
+    },
+    {
+        "date": "2024-05-26",
+        "amount": 750,
+        "transactionId": 6998
+    },
+    {
+        "date": "2024-05-28",
+        "amount": 751900,
+        "transactionId": 3656
+    },
+    {
+        "date": "2024-05-29",
+        "amount": 200000,
+        "transactionId": 3420
+    },
+    {
+        "date": "2024-05-31",
+        "amount": 100000,
+        "transactionId": 8938
+    },
+    {
+        "date": "2024-05-31",
+        "amount": 92954,
+        "transactionId": 9306
+    },
+    {
+        "date": "2024-05-31",
+        "amount": 1500,
+        "transactionId": 5575
+    },
+    {
+        "date": "2024-05-31",
+        "amount": 100000,
+        "transactionId": 9669
+    },
+    {
+        "date": "2024-05-31",
+        "amount": 1500,
+        "transactionId": 6591
+    },
+    {
+        "date": "2024-05-31",
+        "amount": 20000,
+        "transactionId": 2448
+    },
+    {
+        "date": "2024-06-01",
+        "amount": 750,
+        "transactionId": 2761
+    },
+    {
+        "date": "2024-06-01",
+        "amount": 200000,
+        "transactionId": 6641
+    },
+    {
+        "date": "2024-06-05",
+        "amount": 150000,
+        "transactionId": 2013
+    },
+    {
+        "date": "2024-06-06",
+        "amount": 2500,
+        "transactionId": 8130
+    },
+    {
+        "date": "2024-06-06",
+        "amount": 100500,
+        "transactionId": 9408
+    },
+    {
+        "date": "2024-06-07",
+        "amount": 100000,
+        "transactionId": 3665
+    },
+    {
+        "date": "2024-06-07",
+        "amount": 1000,
+        "transactionId": 8407
+    },
+    {
+        "date": "2024-06-08",
+        "amount": 200000,
+        "transactionId": 3213
+    },
+    {
+        "date": "2024-06-10",
+        "amount": 1000000,
+        "transactionId": 6767
+    },
+    {
+        "date": "2024-06-10",
+        "amount": 200151,
+        "transactionId": 3783
+    },
+    {
+        "date": "2024-06-10",
+        "amount": 750,
+        "transactionId": 1332
+    },
+    {
+        "date": "2024-06-13",
+        "amount": 50000,
+        "transactionId": 6416
+    },
+    {
+        "date": "2024-06-13",
+        "amount": 3000,
+        "transactionId": 3947
+    },
+    {
+        "date": "2024-06-14",
+        "amount": 750,
+        "transactionId": 6680
+    },
+    {
+        "date": "2024-06-16",
+        "amount": 2500,
+        "transactionId": 5743
+    },
+    {
+        "date": "2024-06-16",
+        "amount": 5500,
+        "transactionId": 7679
+    },
+    {
+        "date": "2024-06-17",
+        "amount": 200000,
+        "transactionId": 9775
+    },
+    {
+        "date": "2024-06-18",
+        "amount": 50155,
+        "transactionId": 8892
+    },
+    {
+        "date": "2024-06-20",
+        "amount": 16900,
+        "transactionId": 2721
+    },
+    {
+        "date": "2024-06-20",
+        "amount": 6000,
+        "transactionId": 8749
+    },
+    {
+        "date": "2024-06-20",
+        "amount": 1000,
+        "transactionId": 5261
+    },
+    {
+        "date": "2024-06-21",
+        "amount": 36959,
+        "transactionId": 2735
+    },
+    {
+        "date": "2024-06-24",
+        "amount": 1000000,
+        "transactionId": 6481
+    },
+    {
+        "date": "2024-06-24",
+        "amount": 45000,
+        "transactionId": 4260
+    },
+    {
+        "date": "2024-06-24",
+        "amount": 250000,
+        "transactionId": 9832
+    },
+    {
+        "date": "2024-06-26",
+        "amount": 200000,
+        "transactionId": 9890
+    },
+    {
+        "date": "2024-06-28",
+        "amount": 100000,
+        "transactionId": 7075
+    },
+    {
+        "date": "2024-06-29",
+        "amount": 200000,
+        "transactionId": 3749
+    },
+    {
+        "date": "2024-06-30",
+        "amount": 33000,
+        "transactionId": 5611
+    },
+    {
+        "date": "2024-06-30",
+        "amount": 1500,
+        "transactionId": 5099
+    },
+    {
+        "date": "2024-07-01",
+        "amount": 1500,
+        "transactionId": 6051
+    },
+    {
+        "date": "2024-07-01",
+        "amount": 1500,
+        "transactionId": 3554
+    },
+    {
+        "date": "2024-07-01",
+        "amount": 100000,
+        "transactionId": 4106
+    },
+    {
+        "date": "2024-07-01",
+        "amount": 20000,
+        "transactionId": 7381
+    },
+    {
+        "date": "2024-07-02",
+        "amount": 2500,
+        "transactionId": 4764
+    },
+    {
+        "date": "2024-07-02",
+        "amount": 680000,
+        "transactionId": 2171
+    },
+    {
+        "date": "2024-07-02",
+        "amount": 200000,
+        "transactionId": 9619
+    },
+    {
+        "date": "2024-07-02",
+        "amount": 239100,
+        "transactionId": 7592
+    },
+    {
+        "date": "2024-07-02",
+        "amount": 200000,
+        "transactionId": 3305
+    },
+    {
+        "date": "2024-07-02",
+        "amount": 10900,
+        "transactionId": 6896
+    },
+    {
+        "date": "2024-07-04",
+        "amount": 1500,
+        "transactionId": 9140
+    },
+    {
+        "date": "2024-07-04",
+        "amount": 10129,
+        "transactionId": 9500
+    },
+    {
+        "date": "2024-07-04",
+        "amount": 10130,
+        "transactionId": 4662
+    },
+    {
+        "date": "2024-07-06",
+        "amount": 750,
+        "transactionId": 2936
+    },
+    {
+        "date": "2024-07-09",
+        "amount": 50000,
+        "transactionId": 9399
+    },
+    {
+        "date": "2024-07-09",
+        "amount": 511500,
+        "transactionId": 2442
+    },
+    {
+        "date": "2024-07-09",
+        "amount": 500000,
+        "transactionId": 8596
+    },
+    {
+        "date": "2024-07-09",
+        "amount": 5000,
+        "transactionId": 5398
+    },
+    {
+        "date": "2024-07-09",
+        "amount": 200000,
+        "transactionId": 7278
+    },
+    {
+        "date": "2024-07-14",
+        "amount": 1500,
+        "transactionId": 7675
+    },
+    {
+        "date": "2024-07-16",
+        "amount": 750,
+        "transactionId": 2340
+    },
+    {
+        "date": "2024-07-16",
+        "amount": 5500,
+        "transactionId": 4430
+    },
+    {
+        "date": "2024-07-16",
+        "amount": 70112,
+        "transactionId": 3782
+    },
+    {
+        "date": "2024-07-16",
+        "amount": 2500,
+        "transactionId": 6846
+    },
+    {
+        "date": "2024-07-18",
+        "amount": 200000,
+        "transactionId": 8829
+    },
+    {
+        "date": "2024-07-20",
+        "amount": 1000,
+        "transactionId": 9200
+    },
+    {
+        "date": "2024-07-20",
+        "amount": 6000,
+        "transactionId": 9802
+    },
+    {
+        "date": "2024-07-21",
+        "amount": 150000,
+        "transactionId": 7232
+    },
+    {
+        "date": "2024-07-22",
+        "amount": 20000,
+        "transactionId": 1290
+    },
+    {
+        "date": "2024-07-22",
+        "amount": 1500,
+        "transactionId": 9906
+    },
+    {
+        "date": "2024-07-22",
+        "amount": 100000,
+        "transactionId": 8028
+    },
+    {
+        "date": "2024-07-22",
+        "amount": 1500,
+        "transactionId": 7885
+    },
+    {
+        "date": "2024-07-22",
+        "amount": 370000,
+        "transactionId": 4883
+    },
+    {
+        "date": "2024-07-24",
+        "amount": 2500,
+        "transactionId": 8842
+    },
+    {
+        "date": "2024-07-24",
+        "amount": 250000,
+        "transactionId": 1508
+    },
+    {
+        "date": "2024-07-25",
+        "amount": 150000,
+        "transactionId": 5367
+    },
+    {
+        "date": "2024-07-30",
+        "amount": 3000000,
+        "transactionId": 5935
+    },
+    {
+        "date": "2024-07-30",
+        "amount": 7500,
+        "transactionId": 2256
+    },
+    {
+        "date": "2024-07-30",
+        "amount": 3000000,
+        "transactionId": 7864
+    },
+    {
+        "date": "2024-07-30",
+        "amount": 1000000,
+        "transactionId": 5086
+    },
+    {
+        "date": "2024-07-30",
+        "amount": 7500,
+        "transactionId": 5057
+    },
+    {
+        "date": "2024-07-30",
+        "amount": 7500,
+        "transactionId": 1326
+    },
+    {
+        "date": "2024-07-31",
+        "amount": 750,
+        "transactionId": 5705
+    },
+    {
+        "date": "2024-08-02",
+        "amount": 700000,
+        "transactionId": 5385
+    },
+    {
+        "date": "2024-08-03",
+        "amount": 200000,
+        "transactionId": 5563
+    },
+    {
+        "date": "2024-08-04",
+        "amount": 3750,
+        "transactionId": 4028
+    },
+    {
+        "date": "2024-08-04",
+        "amount": 600000,
+        "transactionId": 8703
+    },
+    {
+        "date": "2024-08-06",
+        "amount": 750,
+        "transactionId": 8428
+    },
+    {
+        "date": "2024-08-06",
+        "amount": 20000,
+        "transactionId": 2158
+    },
+    {
+        "date": "2024-08-08",
+        "amount": 30000,
+        "transactionId": 2234
+    },
+    {
+        "date": "2024-08-08",
+        "amount": 100000,
+        "transactionId": 3275
+    },
+    {
+        "date": "2024-08-10",
+        "amount": 750,
+        "transactionId": 9373
+    },
+    {
+        "date": "2024-08-10",
+        "amount": 100000,
+        "transactionId": 9995
+    },
+    {
+        "date": "2024-08-11",
+        "amount": 38000,
+        "transactionId": 4760
+    },
+    {
+        "date": "2024-08-12",
+        "amount": 750,
+        "transactionId": 2408
+    },
+    {
+        "date": "2024-08-14",
+        "amount": 100000,
+        "transactionId": 4040
+    },
+    {
+        "date": "2024-08-14",
+        "amount": 20000,
+        "transactionId": 8890
+    },
+    {
+        "date": "2024-08-14",
+        "amount": 100000,
+        "transactionId": 4662
+    },
+    {
+        "date": "2024-08-14",
+        "amount": 3000,
+        "transactionId": 8248
+    },
+    {
+        "date": "2024-08-14",
+        "amount": 50000,
+        "transactionId": 6960
+    },
+    {
+        "date": "2024-08-14",
+        "amount": 100000,
+        "transactionId": 4481
+    },
+    {
+        "date": "2024-08-14",
+        "amount": 1500,
+        "transactionId": 4837
+    },
+    {
+        "date": "2024-08-14",
+        "amount": 1500,
+        "transactionId": 3013
+    },
+    {
+        "date": "2024-08-15",
+        "amount": 2000,
+        "transactionId": 5160
+    },
+    {
+        "date": "2024-08-15",
+        "amount": 126000,
+        "transactionId": 1744
+    },
+    {
+        "date": "2024-08-15",
+        "amount": 4245000,
+        "transactionId": 1
+    },
+    {
+        "date": "2024-08-16",
+        "amount": 200000,
+        "transactionId": 8156
+    },
+    {
+        "date": "2024-08-16",
+        "amount": 2500,
+        "transactionId": 9800
+    },
+    {
+        "date": "2024-08-16",
+        "amount": 5500,
+        "transactionId": 1144
+    },
+    {
+        "date": "2024-08-16",
+        "amount": 22000,
+        "transactionId": 1608
+    },
+    {
+        "date": "2024-08-16",
+        "amount": 21000,
+        "transactionId": 2559
+    },
+    {
+        "date": "2024-08-17",
+        "amount": 7500,
+        "transactionId": 1241
+    },
+    {
+        "date": "2024-08-17",
+        "amount": 500000,
+        "transactionId": 1934
+    },
+    {
+        "date": "2024-08-18",
+        "amount": 750,
+        "transactionId": 1971
+    },
+    {
+        "date": "2024-08-18",
+        "amount": 300000,
+        "transactionId": 3418
+    },
+    {
+        "date": "2024-08-20",
+        "amount": 6000,
+        "transactionId": 9284
+    },
+    {
+        "date": "2024-08-20",
+        "amount": 1000,
+        "transactionId": 6670
+    },
+    {
+        "date": "2024-08-21",
+        "amount": 1000000,
+        "transactionId": 6747
+    },
+    {
+        "date": "2024-08-21",
+        "amount": 300000,
+        "transactionId": 9907
+    },
+    {
+        "date": "2024-08-22",
+        "amount": 750,
+        "transactionId": 3687
+    },
+    {
+        "date": "2024-08-23",
+        "amount": 7500,
+        "transactionId": 6977
+    },
+    {
+        "date": "2024-08-23",
+        "amount": 200000,
+        "transactionId": 6761
+    },
+    {
+        "date": "2024-08-31",
+        "amount": 25000,
+        "transactionId": 5080
+    },
+    {
+        "date": "2024-09-02",
+        "amount": 680000,
+        "transactionId": 7945
+    },
+    {
+        "date": "2024-09-02",
+        "amount": 2500,
+        "transactionId": 6137
+    },
+    {
+        "date": "2024-09-04",
+        "amount": 80000,
+        "transactionId": 4786
+    },
+    {
+        "date": "2024-09-04",
+        "amount": 750,
+        "transactionId": 3159
+    },
+    {
+        "date": "2024-09-05",
+        "amount": 100000,
+        "transactionId": 3539
+    },
+    {
+        "date": "2024-09-06",
+        "amount": 350000,
+        "transactionId": 3983
+    },
+    {
+        "date": "2024-09-06",
+        "amount": 2000,
+        "transactionId": 2020
+    },
+    {
+        "date": "2024-09-06",
+        "amount": 600000,
+        "transactionId": 3623
+    },
+    {
+        "date": "2024-09-10",
+        "amount": 1500,
+        "transactionId": 1971
+    },
+    {
+        "date": "2024-09-11",
+        "amount": 100000,
+        "transactionId": 8684
+    },
+    {
+        "date": "2024-09-12",
+        "amount": 100000,
+        "transactionId": 4465
+    },
+    {
+        "date": "2024-09-12",
+        "amount": 19800,
+        "transactionId": 2336
+    },
+    {
+        "date": "2024-09-12",
+        "amount": 1000,
+        "transactionId": 7940
+    },
+    {
+        "date": "2024-09-12",
+        "amount": 2500,
+        "transactionId": 2239
+    },
+    {
+        "date": "2024-09-13",
+        "amount": 200000,
+        "transactionId": 6500
+    },
+    {
+        "date": "2024-09-13",
+        "amount": 20000,
+        "transactionId": 5055
+    },
+    {
+        "date": "2024-09-13",
+        "amount": 1500,
+        "transactionId": 3484
+    },
+    {
+        "date": "2024-09-13",
+        "amount": 100000,
+        "transactionId": 9477
+    },
+    {
+        "date": "2024-09-13",
+        "amount": 1500,
+        "transactionId": 4097
+    },
+    {
+        "date": "2024-09-16",
+        "amount": 5500,
+        "transactionId": 2009
+    },
+    {
+        "date": "2024-09-16",
+        "amount": 2500,
+        "transactionId": 4717
+    },
+    {
+        "date": "2024-09-16",
+        "amount": 3000,
+        "transactionId": 4498
+    },
+    {
+        "date": "2024-09-16",
+        "amount": 50000,
+        "transactionId": 6281
+    },
+    {
+        "date": "2024-09-19",
+        "amount": 250131,
+        "transactionId": 2224
+    },
+    {
+        "date": "2024-09-19",
+        "amount": 100000,
+        "transactionId": 8879
+    },
+    {
+        "date": "2024-09-19",
+        "amount": 2500,
+        "transactionId": 2763
+    },
+    {
+        "date": "2024-09-20",
+        "amount": 1000,
+        "transactionId": 6957
+    },
+    {
+        "date": "2024-09-20",
+        "amount": 6000,
+        "transactionId": 4927
+    },
+    {
+        "date": "2024-09-22",
+        "amount": 50000,
+        "transactionId": 1071
+    },
+    {
+        "date": "2024-09-24",
+        "amount": 300000,
+        "transactionId": 9810
+    },
+    {
+        "date": "2024-09-24",
+        "amount": 7500,
+        "transactionId": 1761
+    },
+    {
+        "date": "2024-09-24",
+        "amount": 96300,
+        "transactionId": 6517
+    },
+    {
+        "date": "2024-09-27",
+        "amount": 200000,
+        "transactionId": 1852
+    },
+    {
+        "date": "2024-09-28",
+        "amount": 750,
+        "transactionId": 7385
+    },
+    {
+        "date": "2024-10-01",
+        "amount": 300000,
+        "transactionId": 8086
+    },
+    {
+        "date": "2024-10-01",
+        "amount": 100000,
+        "transactionId": 6939
+    },
+    {
+        "date": "2024-10-03",
+        "amount": 1500,
+        "transactionId": 2874
+    },
+    {
+        "date": "2024-10-03",
+        "amount": 20000,
+        "transactionId": 2500
+    },
+    {
+        "date": "2024-10-08",
+        "amount": 1000000,
+        "transactionId": 7945
+    },
+    {
+        "date": "2024-10-08",
+        "amount": 200000,
+        "transactionId": 9503
+    },
+    {
+        "date": "2024-10-10",
+        "amount": 750,
+        "transactionId": 7097
+    },
+    {
+        "date": "2024-10-13",
+        "amount": 100000,
+        "transactionId": 1704
+    },
+    {
+        "date": "2024-10-13",
+        "amount": 20000,
+        "transactionId": 3554
+    },
+    {
+        "date": "2024-10-13",
+        "amount": 1500,
+        "transactionId": 7071
+    },
+    {
+        "date": "2024-10-13",
+        "amount": 1500,
+        "transactionId": 6290
+    },
+    {
+        "date": "2024-10-14",
+        "amount": 750,
+        "transactionId": 8442
+    },
+    {
+        "date": "2024-10-14",
+        "amount": 90000,
+        "transactionId": 6120
+    },
+    {
+        "date": "2024-10-14",
+        "amount": 55000,
+        "transactionId": 1651
+    },
+    {
+        "date": "2024-10-16",
+        "amount": 2500,
+        "transactionId": 9328
+    },
+    {
+        "date": "2024-10-16",
+        "amount": 5500,
+        "transactionId": 7333
+    },
+    {
+        "date": "2024-10-17",
+        "amount": 50000,
+        "transactionId": 9411
+    },
+    {
+        "date": "2024-10-19",
+        "amount": 100000,
+        "transactionId": 2833
+    },
+    {
+        "date": "2024-10-19",
+        "amount": 7500,
+        "transactionId": 2708
+    },
+    {
+        "date": "2024-10-20",
+        "amount": 6000,
+        "transactionId": 7384
+    },
+    {
+        "date": "2024-10-20",
+        "amount": 80000,
+        "transactionId": 2559
+    },
+    {
+        "date": "2024-10-20",
+        "amount": 1000,
+        "transactionId": 3844
+    },
+    {
+        "date": "2024-10-20",
+        "amount": 50000,
+        "transactionId": 9169
+    },
+    {
+        "date": "2024-10-20",
+        "amount": 3000,
+        "transactionId": 9233
+    },
+    {
+        "date": "2024-10-21",
+        "amount": 20000,
+        "transactionId": 7147
+    },
+    {
+        "date": "2024-10-22",
+        "amount": 500000,
+        "transactionId": 7605
+    },
+    {
+        "date": "2024-10-22",
+        "amount": 750,
+        "transactionId": 7699
+    },
+    {
+        "date": "2024-10-23",
+        "amount": 200000,
+        "transactionId": 4156
+    },
+    {
+        "date": "2024-10-23",
+        "amount": 200000,
+        "transactionId": 4279
+    },
+    {
+        "date": "2024-10-23",
+        "amount": 2500,
+        "transactionId": 6436
+    },
+    {
+        "date": "2024-10-24",
+        "amount": 100000,
+        "transactionId": 4558
+    },
+    {
+        "date": "2024-10-25",
+        "amount": 200000,
+        "transactionId": 4071
+    },
+    {
+        "date": "2024-10-25",
+        "amount": 200000,
+        "transactionId": 8191
+    },
+    {
+        "date": "2024-10-28",
+        "amount": 750,
+        "transactionId": 3827
+    },
+    {
+        "date": "2024-10-29",
+        "amount": 300000,
+        "transactionId": 5461
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 120000,
+        "transactionId": 1496
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 2500,
+        "transactionId": 5092
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 100000,
+        "transactionId": 4737
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 2500,
+        "transactionId": 9777
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 3000,
+        "transactionId": 4823
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 810752,
+        "transactionId": 9867
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 6500,
+        "transactionId": 5951
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 3203000,
+        "transactionId": 3
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 2500,
+        "transactionId": 7359
+    },
+    {
+        "date": "2024-10-30",
+        "amount": 3000000,
+        "transactionId": 2396
+    },
+    {
+        "date": "2024-10-31",
+        "amount": 2500,
+        "transactionId": 2324
+    },
+    {
+        "date": "2024-10-31",
+        "amount": 500000,
+        "transactionId": 1642
+    },
+    {
+        "date": "2024-11-01",
+        "amount": 360000,
+        "transactionId": 8984
+    },
+    {
+        "date": "2024-11-02",
+        "amount": 330000,
+        "transactionId": 2722
+    },
+    {
+        "date": "2024-11-02",
+        "amount": 2500,
+        "transactionId": 4449
+    },
+    {
+        "date": "2024-11-02",
+        "amount": 680000,
+        "transactionId": 1753
+    },
+    {
+        "date": "2024-11-02",
+        "amount": 2500,
+        "transactionId": 6068
+    },
+    {
+        "date": "2024-11-03",
+        "amount": 1000000,
+        "transactionId": 7499
+    },
+    {
+        "date": "2024-11-04",
+        "amount": 100000,
+        "transactionId": 3199
+    },
+    {
+        "date": "2024-11-04",
+        "amount": 2500,
+        "transactionId": 6893
+    },
+    {
+        "date": "2024-11-04",
+        "amount": 437000,
+        "transactionId": 5912
+    },
+    {
+        "date": "2024-11-04",
+        "amount": 40000,
+        "transactionId": 4593
+    },
+    {
+        "date": "2024-11-04",
+        "amount": 750,
+        "transactionId": 7911
+    },
+    {
+        "date": "2024-11-04",
+        "amount": 2500,
+        "transactionId": 8344
+    },
+    {
+        "date": "2024-11-05",
+        "amount": 700000,
+        "transactionId": 8490
+    },
+    {
+        "date": "2024-11-07",
+        "amount": 500000,
+        "transactionId": 6122
+    },
+    {
+        "date": "2024-11-07",
+        "amount": 100000,
+        "transactionId": 3270
+    },
+    {
+        "date": "2024-11-07",
+        "amount": 50000,
+        "transactionId": 5828
+    },
+    {
+        "date": "2024-11-07",
+        "amount": 2500,
+        "transactionId": 1475
+    },
+    {
+        "date": "2024-11-08",
+        "amount": 254000,
+        "transactionId": 5599
+    },
+    {
+        "date": "2024-11-08",
+        "amount": 1000000,
+        "transactionId": 1933
+    },
+    {
+        "date": "2024-11-08",
+        "amount": 300000,
+        "transactionId": 6378
+    },
+    {
+        "date": "2024-11-08",
+        "amount": 89800,
+        "transactionId": 1222
+    },
+    {
+        "date": "2024-11-10",
+        "amount": 3000,
+        "transactionId": 5071
+    },
+    {
+        "date": "2024-11-11",
+        "amount": 775000,
+        "transactionId": 6293
+    },
+    {
+        "date": "2024-11-11",
+        "amount": 524000,
+        "transactionId": 2774
+    },
+    {
+        "date": "2024-11-11",
+        "amount": 2500,
+        "transactionId": 6964
+    },
+    {
+        "date": "2024-11-11",
+        "amount": 2500,
+        "transactionId": 1794
+    },
+    {
+        "date": "2024-11-11",
+        "amount": 100000,
+        "transactionId": 9891
+    },
+    {
+        "date": "2024-11-11",
+        "amount": 6500,
+        "transactionId": 4444
+    },
+    {
+        "date": "2024-11-11",
+        "amount": 150000,
+        "transactionId": 7636
+    },
+    {
+        "date": "2024-11-12",
+        "amount": 20000,
+        "transactionId": 9050
+    },
+    {
+        "date": "2024-11-12",
+        "amount": 1500,
+        "transactionId": 4895
+    },
+    {
+        "date": "2024-11-12",
+        "amount": 1500,
+        "transactionId": 3955
+    },
+    {
+        "date": "2024-11-14",
+        "amount": 30000,
+        "transactionId": 5946
+    },
+    {
+        "date": "2024-11-15",
+        "amount": 20000,
+        "transactionId": 9904
+    },
+    {
+        "date": "2024-11-15",
+        "amount": 90000,
+        "transactionId": 4287
+    },
+    {
+        "date": "2024-11-16",
+        "amount": 2500,
+        "transactionId": 9449
+    },
+    {
+        "date": "2024-11-16",
+        "amount": 5500,
+        "transactionId": 8676
+    },
+    {
+        "date": "2024-11-18",
+        "amount": 437000,
+        "transactionId": 6849
+    },
+    {
+        "date": "2024-11-18",
+        "amount": 2500,
+        "transactionId": 8195
+    },
+    {
+        "date": "2024-11-18",
+        "amount": 150000,
+        "transactionId": 3302
+    },
+    {
+        "date": "2024-11-18",
+        "amount": 2500,
+        "transactionId": 2840
+    }
+]

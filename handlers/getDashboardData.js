@@ -4,6 +4,7 @@ const Users = require("../models/user");
 const modelAndDataAdjustment = require("../helper/modelProcessing");
 const detectAnomalies = require("../helper/detectAnomalies");
 const { uploadToGCS } = require("../helper/bucket");
+const generateFinancialAdvice = require("../helper/generateFinancialAdvice");
 const { loadModel } = require("../helper/loadModel");
 
 const getDashboardDataHandler = async (req, res) => {
@@ -24,9 +25,21 @@ const getDashboardDataHandler = async (req, res) => {
         .status(400)
         .json({ message: `User dengan id ${user_id} tidak tersedia.` });
 
-    let model = await loadModel();
+    const userModelFolder = `user_${user_id}`; // Folder yang spesifik untuk user_id
+    const model = (await loadModel(userModelFolder)) || (await loadModel());
 
     const userTransactions = await user.getTransactions();
+
+    if (userTransactions.length === 0) {
+      return res.status(200).json({
+        message: "Pengguna belum mencatatkan transaksi keuangan.",
+        totalIncome: 0,
+        totalExpense: 0,
+        financialAdvice:
+          "Anda belum memiliki data transaksi untuk dianalisis. Silakan mulai mencatat transaksi Anda.",
+        anomalyTransactions: [],
+      });
+    }
 
     // Mendapatkan tanggal satu bulan yang lalu
     const oneMonthAgo = new Date();
@@ -66,42 +79,44 @@ const getDashboardDataHandler = async (req, res) => {
       const { maxValues, minValues, normalizedData } =
         await modelAndDataAdjustment(model, formatExpenseTransactions);
 
-      await model.save("file://model_folder");
+      const modelFolderPath = path.join(__dirname, "..", "tmp", "model_folder");
 
-      // Setelah model disimpan di lokal, unggah model dan bobot ke Google Cloud Storage
-      const modelJsonPath = path.join(
+      await model.save(`file://${modelFolderPath}`);
+
+      const modelPath = path.join(
         __dirname,
         "..",
+        "tmp",
         "model_folder",
         "model.json"
       );
+
       const weightsPath = path.join(
         __dirname,
         "..",
+        "tmp",
         "model_folder",
         "weights.bin"
-      ); // Biasanya file bobot akan memiliki ekstensi seperti ini
+      );
 
-      // Mengunggah file model dan bobot ke Google Cloud Storage
-      await uploadToGCS(modelJsonPath, "my-autoencoder.json"); // Mengupload file model.json
-      await uploadToGCS(weightsPath, "weights.bin"); // Mengupload file bobot
-
-      // Menghapus folder 'model_folder' setelah file diupload ke GCS
-      const modelFolderPath = path.join(__dirname, "..", "model_folder");
+      // Upload model dan weights ke Google Cloud Storage dengan folder berdasarkan user_id
+      await uploadToGCS(modelPath, `${userModelFolder}/model.json`);
+      await uploadToGCS(weightsPath, `${userModelFolder}/weights.bin`);
 
       // Pastikan folder kosong sebelum dihapus
-      fs.rmSync(modelFolderPath, { recursive: true, force: true });
+      fs.rmSync(path.join(__dirname, "..", "tmp", "model_folder"), {
+        recursive: true,
+        force: true,
+      });
 
-      model = await loadModel();
-
-      // // Deteksi anomali dengan persentil yang ditentukan (misalnya, 95)
+      // Deteksi anomali dengan persentil yang ditentukan (misalnya, 50)
       anomalyTransactions = await detectAnomalies(
         model,
         normalizedData,
         minValues,
         maxValues,
         formatExpenseTransactions,
-        99
+        50
       );
 
       anomalyTransactions = JSON.parse(anomalyTransactions).map(
@@ -117,20 +132,23 @@ const getDashboardDataHandler = async (req, res) => {
       );
     }
 
+    const financialAdvice = generateFinancialAdvice(
+      totalIncome,
+      totalExpense,
+      anomalyTransactions
+    );
+
     res.status(200).json({
       message: "Data analisis berhasil diambil",
       totalIncome,
       totalExpense,
-      financialAdvice:
-        totalExpense > totalIncome
-          ? "Dalam 30 hari terakhir, pengeluaran Anda melebihi pendapatan, pertimbangkan untuk mengurangi pengeluaran."
-          : "Keuangan Anda sehat, pertimbangkan untuk menabung lebih banyak.",
+      financialAdvice,
       anomalyTransactions,
     });
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Terjadi kesalahan di server", error: error.message });
+      .json({ message: "Terjadi kesalahan di server", error: error });
   }
 };
 

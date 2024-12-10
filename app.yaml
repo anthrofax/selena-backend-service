@@ -1,4 +1,7 @@
 runtime: nodejs20
+runtime_config:
+  document_root: .
+  skip_lockdown_document_root: true
 env_variables:
   NODE_ENV: "production"
   DB_HOST: "34.101.206.199"
@@ -8,4 +11,7 @@ env_variables:
   EMAIL_USER: "afridhoikhsan@gmail.com"
   EMAIL_PASSWORD: "hruo yplz ammz vpyk"
   JWT_SECRET: "G8MoIWZbYcZHVddUNDlQIbsqco8uyXoVoYgluWDaWj1hUkDfUC9nc5tC4tPqzOITKJ+EIxttOGCA6U7+Rxw3sg=="
-  MODEL_URL: "https://storage.googleapis.com/selena_model_bucket/my-autoencoder.json"
+  MODEL_URL: "https://storage.googleapis.com/selena_model_bucket/model.json"
+  PROJECT_ID: "selena-project-443105"
+  BUCKET_NAME: "selena_model_bucket"
+  SERVICE_ACC_KEY_PATH: "./selena-project-443105-f3a5465d1af0.json"

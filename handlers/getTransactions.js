@@ -26,6 +26,7 @@ const getTransactionsHandler = async (req, res) => {
     // Get the transactions from the database using Sequelize's findAll
     const transactions = await Transactions.findAll({
       where: filter, // Applying the dynamic filter
+      order: [['date', 'ASC']], // Sorting by 'date' in ascending order
     });
 
     if (transactions.length < 1) {
@@ -39,7 +40,7 @@ const getTransactionsHandler = async (req, res) => {
       data: transactions,
     });
   } catch (error) {
-    res.status(500).json({ message: "Terjadi kesalahan di server", error :error.message });
+    res.status(500).json({ message: "Terjadi kesalahan di server", error: error.message });
   }
 };
 

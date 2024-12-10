@@ -2,17 +2,24 @@ const tf = require("@tensorflow/tfjs-node");
 const fs = require("fs");
 const path = require("path");
 
-exports.loadModel = async () => {
-  // const modelPath = path.join(
-  //   __dirname,
-  //   "../machine-learning-models/my-autoencoder.json"
-  // );
-
+exports.loadModel = async (userModelFolder) => {
+  let modelUrl = "";
+  
   try {
-    const model = await tf.loadLayersModel(process.env.MODEL_URL);
-    // const model = await tf.loadLayersModel(`file://${modelPath}`);
+    if (userModelFolder) {
+      modelUrl = `https://storage.googleapis.com/${process.env.BUCKET_NAME}/${userModelFolder}/model.json`; // URL model berdasarkan folder user
+    } else {
+      const modelPath = path.join(
+        __dirname,
+        "../machine-learning-models/my-autoencoder.json"
+      );
+      modelUrl = `file://${modelPath}`;
+    }
+    const model = await tf.loadLayersModel(modelUrl);
 
-    console.log("Model berhasil dimuat");
+    if (userModelFolder) console.log("Folder ada");
+    else console.log("Folder ga ada");
+
     return model;
   } catch (error) {
     console.error("Terjadi kesalahan saat memuat model:", error);
