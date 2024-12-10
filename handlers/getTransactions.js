@@ -26,7 +26,7 @@ const getTransactionsHandler = async (req, res) => {
     // Get the transactions from the database using Sequelize's findAll
     const transactions = await Transactions.findAll({
       where: filter, // Applying the dynamic filter
-      order: [['date', 'ASC']], // Sorting by 'date' in ascending order
+      order: [['date', 'DESC']], 
     });
 
     if (transactions.length < 1) {
