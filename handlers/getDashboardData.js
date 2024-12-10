@@ -123,6 +123,7 @@ const getDashboardDataHandler = async (req, res) => {
         (anomalyTransaction) => ({
           date: anomalyTransaction.date,
           amount: anomalyTransaction.amount,
+          transactionId: anomalyTransaction.transactionId,
           catatan:
             expenseTransactions.find(
               ({ dataValues }) =>
