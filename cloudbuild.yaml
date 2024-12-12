@@ -1,0 +1,32 @@
+steps:
+  # Step 1: Build and tag the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build', 
+      '-t', 
+      'asia-southeast2-docker.pkg.dev/selena-project-443105/selena-artifact-repo/selena-backend-service:1.0.0', 
+      '.'
+    ]
+  
+  # Step 2: Push the image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push', 
+      'asia-southeast2-docker.pkg.dev/selena-project-443105/selena-artifact-repo/selena-backend-service:1.0.0'
+    ]
+  
+  # Step 3: Deploy the image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: [
+      'run', 
+      'deploy', 
+      'selena-backend-service', 
+      '--image', 
+      'asia-southeast2-docker.pkg.dev/selena-project-443105/selena-artifact-repo/selena-backend-service:1.0.0', 
+      '--region', 
+      'asia-southeast2', 
+      '--platform', 
+      'managed',
+      '--quiet'
+    ]

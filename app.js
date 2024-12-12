@@ -10,10 +10,10 @@ const { loadRawDataForPreprocessNeeds, loadModel } = require("./helper/loadModel
 
 const app = express();
 
-(async () => {
-  app.model = await loadModel();
-  app.rawData = await loadRawDataForPreprocessNeeds();
-})();
+// (async () => {
+//   app.model = await loadModel();
+//   app.rawData = await loadRawDataForPreprocessNeeds();
+// })();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

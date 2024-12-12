@@ -51,6 +51,10 @@ const getDashboardDataHandler = async (req, res) => {
       return transactionDate >= oneMonthAgo;
     });
 
+    const incomeTransations = recentTransactions.filter(
+      ({ dataValues }) => dataValues.transaction_type === "income"
+    );
+
     const expenseTransactions = recentTransactions.filter(
       ({ dataValues }) => dataValues.transaction_type === "expense"
     );
@@ -141,8 +145,12 @@ const getDashboardDataHandler = async (req, res) => {
 
     res.status(200).json({
       message: "Data analisis berhasil diambil",
-      totalIncome,
-      totalExpense,
+      transactionStats: {
+        totalIncome,
+        totalExpense,
+        incomeTransationsSize: incomeTransations.length,
+        expenseTransationsSize: expenseTransactions.length,
+      },
       financialAdvice,
       anomalyTransactions,
     });
